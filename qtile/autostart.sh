@@ -4,3 +4,4 @@
 picom &
 copyq &
 redshift &
+schkd &

@@ -14,6 +14,8 @@ from colors import *
 
 mod = "mod4"
 terminal = "kitty"
+browser = "librewolf"
+
 myWallpapers = ["~/Escritorio/wallpapers/rubik-forest-k-wallpaper.jpg", 
         "~/Escritorio/wallpapers/lamborghini-needforspeed.jpg",
         "~/Escritorio/wallpapers/mountain-lake-landscape-wallpaper.jpg",
@@ -68,7 +70,7 @@ keys = [
 
     # Run
     Key(["shift"], "space", lazy.spawn("rofi -show run")),
-    Key([mod, "shift"], "c", lazy.spawn("chromium")),
+    Key([mod], "b", lazy.spawn(browser)),
 
     # Change Keyboard Layout 
     Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
@@ -82,6 +84,10 @@ keys = [
         desc='toggle floating'
         )
 
+    # Key([mod, "shift"], "f",
+    #     lazy.window.toggle_fullscreen(),
+    #     desc='toggle fullscreen'
+    #     )
 ]
 
 groups = [Group(1, layout='border_focus_stack'),

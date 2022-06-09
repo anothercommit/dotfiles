@@ -1,1 +1,2 @@
-let $NVIM = '~/joaco/.config/nvim'
+let @l = 'nx'
+let @w = 'ndw'
