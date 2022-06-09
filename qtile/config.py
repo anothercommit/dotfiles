@@ -68,16 +68,8 @@ keys = [
     Key(["shift"], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 15%+")),
     Key(["shift"], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 15%-")),
 
-    # Run
-    Key(["shift"], "space", lazy.spawn("rofi -show run")),
-    Key([mod], "b", lazy.spawn(browser)),
-
     # Change Keyboard Layout 
     Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
-
-    #Screenshot
-    Key([], "Print", lazy.spawn(terminal)),
-    Key(["shift"], "Print", lazy.spawn("maim -s -k | xclip -selection clipboard -t image/png &")),
 
     Key([mod, "shift"], "f",
         lazy.window.toggle_floating(),

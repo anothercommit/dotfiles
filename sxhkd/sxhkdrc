@@ -1,2 +1,32 @@
-l + shift + e
+# Rofi
+shift + space
+    rofi -show run
+
+#ctrl + space + c 
+#    rofi -show calc -no-show-match -no-sort
+
+ctrl + space + e
     rofi -show emoji
+
+# Run
+super + b 
+    librewolf
+
+#print
+    #maim -k | xclip -selection clipboard -t image/png
+
+#shift + Print 
+#    maim -s -k | xclip -selection clipboard -t image/png
+
+
+#XF86AudioRaiseVolume
+#    amixer sset Master 1%+
+
+#XF86AudioLowerVolume
+#    amixer sset Master 1%-
+
+#shift + XF86AudioRaiseVolume
+#    amixer sset Master 15%-
+
+#shift + XF86AudioRaiseVolume
+#    amixer sset Master 15%-
