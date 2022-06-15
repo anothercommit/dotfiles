@@ -16,12 +16,7 @@ mod = "mod4"
 terminal = "kitty"
 browser = "librewolf"
 
-myWallpapers = ["~/Escritorio/wallpapers/rubik-forest-k-wallpaper.jpg", 
-        "~/Escritorio/wallpapers/lamborghini-needforspeed.jpg",
-        "~/Escritorio/wallpapers/mountain-lake-landscape-wallpaper.jpg",
-        "~/Escritorio/wallpapers/rubiks-cube-digital-art-wallpaper.jpg",
-        "~/Escritorio/wallpapers/wallpaper.jpg",
-        "~/Escritorio/wallpapers/canyons-wallpaper.png"]
+myWallpapers = []
 
 keys = [
     # Switch between windows
@@ -62,14 +57,14 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     
     # Media 
-    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master toggle")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1%+")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 1%-")),
-    Key(["shift"], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 15%+")),
-    Key(["shift"], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 15%-")),
+#    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master toggle")),
+#    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1%+")),
+#    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 1%-")),
+#    Key(["shift"], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 15%+")),
+#    Key(["shift"], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 15%-")),
 
     # Change Keyboard Layout 
-    Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+    Key(["control"], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
 
     Key([mod, "shift"], "f",
         lazy.window.toggle_floating(),
@@ -91,9 +86,9 @@ groups = [Group(1, layout='border_focus_stack'),
           Group(7, layout='border_focus_stack'),
           Group(8, layout='border_focus_stack'),
           Group(9, layout='border_focus_stack'),
-          Group("Space", layout='floating')]
+          Group(0, layout='floating')]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "1234567890"]
 
 for i in groups:
     keys.extend(
@@ -177,8 +172,7 @@ screens = [
                 lower_left_triangle(rubik[0], rubik[2]),
 
                 widget.CheckUpdates(distro="Arch_checkupdates", display_format="{updates} Updates", 
-                    fontsize=13, no_update_string="", 
-                    mouse_callbacks={'Button1': lambda: cmd_spawn(terminal + '-e sudo pacman -Syu')}),
+                    fontsize=13, no_update_string=""),
 
                 widget.GmailChecker(username="Joaquín", passowrd="Joaquin2007", email_path="jdomenech@escuelasproa.edu.ar"),
 
@@ -196,8 +190,8 @@ screens = [
         ),
 
 #        wallpaper=myWallpapers[random.randrange(0, len(myWallpapers), 1)],
-        wallpaper=myWallpapers[3],
-        wallpaper_mode='fill', 
+#        wallpaper=myWallpapers[3],
+#        wallpaper_mode='fill', 
     ),
 ]
 
