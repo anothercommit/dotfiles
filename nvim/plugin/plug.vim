@@ -15,6 +15,7 @@ Plug 'numToStr/Comment.nvim'
 
 Plug 'sainnhe/everforest'
 Plug 'EdenEast/nightfox.nvim'
+Plug 'dracula/vim'
 Plug 'sainnhe/sonokai'
 
 call plug#end()

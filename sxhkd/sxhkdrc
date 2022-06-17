@@ -1,11 +1,11 @@
 # Rofi
-super
+shift + space
     rofi -show run
 
-shift + space + c 
+alt + c 
     rofi -show calc -no-show-match -no-sort
 
-shift + space + e
+alt + e
     rofi -show emoji
 
 
@@ -16,7 +16,7 @@ super + b
 
 # //----Special keys----\\ 
 print
-    maim -k | xclip -selection clipboard -t image/png
+    maim | xclip -selection clipboard -t image/png
 
 shift + Print 
     maim -s -k | xclip -selection clipboard -t image/png

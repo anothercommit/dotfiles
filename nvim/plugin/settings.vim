@@ -16,6 +16,6 @@ set shiftwidth=4
 set expandtab
 set tabstop=4
 
-colorscheme everforest
+colorscheme sonokai
 
 set completeopt=menu,menuone,noselect

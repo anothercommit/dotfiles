@@ -82,13 +82,9 @@ groups = [Group(1, layout='border_focus_stack'),
           Group(3, layout='border_focus_stack'),
           Group(4, layout='border_focus_stack'),
           Group(5, layout='border_focus_stack'),
-          Group(6, layout='border_focus_stack'),
-          Group(7, layout='border_focus_stack'),
-          Group(8, layout='border_focus_stack'),
-          Group(9, layout='border_focus_stack'),
-          Group(0, layout='floating')]
+          Group(6, layout='floating')]
 
-groups = [Group(i) for i in "1234567890"]
+groups = [Group(i) for i in "123456"]
 
 for i in groups:
     keys.extend(
@@ -181,7 +177,7 @@ screens = [
 
                 upper_right_triangle(rubik[0], rubik[6]),
 
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p", background=rubik[6], foreground=rubik[0]),
+                widget.Clock(format="%m/%d %a %I:%M", background=rubik[6], foreground=rubik[0]),
 
                 widget.KeyboardLayout(configured_keyboards=['us', 'es'], background=rubik[5]),
             ],
