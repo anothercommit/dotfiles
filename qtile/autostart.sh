@@ -1,8 +1,6 @@
 #!/bin/sh
 
-
+nitrogen --restore &
+redshift &
 picom &
 copyq &
-redshift &
-nitrogen --restore &
-sxhkd &
