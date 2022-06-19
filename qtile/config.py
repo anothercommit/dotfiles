@@ -226,7 +226,7 @@ screens = [
                     display_format = "Updates {updates} ",
                     colour_have_updates = neon_mclaren[1][4],
                     colour_no_updates = neon_mclaren[1][5],
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e paru')},
+                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e paru')},
                     padding = 5,
                     background = neon_mclaren[0][5]
                     ),
