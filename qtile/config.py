@@ -2,11 +2,13 @@ import os
 import subprocess
 from libqtile import hook
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 import random
+
+
 
 # My files
 from unicodes import *
@@ -60,9 +62,18 @@ keys = [
      Key([mod], "b",
          lazy.spawn(browser)),
 
-     Key(["shift"], "space",
-         lazy.spawn("rofi -show run")),
-    # TODO: hacer keychords para rofi
+
+     KeyChord(["shift"], "space", [
+         Key([], "r",
+             lazy.spawn("rofi -show drun")
+         ),
+         Key([], "e",
+             lazy.spawn("rofi -show emoji")
+         ),
+         Key([], "c",
+             lazy.spawn("rofi -show calc")
+         ),
+         ]),
 
 
     # Media 
@@ -93,23 +104,28 @@ keys = [
 
 
     # Windows
+    Key([mod], "m",
+        lazy.layout.maximize(),
+        desc='toggle window between minimum and maximum sizes'
+        ),
+     
     Key([mod, "shift"], "f",
         lazy.window.toggle_floating(),
         desc='toggle floating'
-        )
+        ),
 
-    # Key([mod, "shift"], "f",
-    #     lazy.window.toggle_fullscreen(),
-    #     desc='toggle fullscreen'
-    #     )
+    Key([mod], "f",
+        lazy.window.toggle_fullscreen(),
+        desc='toggle fullscreen'
+        )
 ]
 
-groups = [Group(1, layout='border_focus_stack'),
-          Group(2, layout='border_focus_stack'),
-          Group(3, layout='border_focus_stack'),
-          Group(4, layout='border_focus_stack'),
-          Group(5, layout='border_focus_stack'),
-          Group(6, layout='floating')]
+groups = [Group("web", layout='border_focus_stack'),
+          Group("dev", layout='border_focus_stack'),
+          Group("ref", layout='border_focus_stack'),
+          Group("chat", layout='border_focus_stack'),
+          Group("music", layout='border_focus_stack'),
+          Group("space", layout='floating')]
 
 groups = [Group(i) for i in "123456"]
 
@@ -163,7 +179,7 @@ mouse = [
 
 
 widget_defaults = dict(
-    font="Delugia Mono",
+    font="Delugia",
     fontsize=13,
     padding=3,
 )
@@ -173,50 +189,64 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+              widget.CurrentLayoutIcon(
+                       custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+                       foreground = neon_mclaren[0][2],
+                       background = neon_mclaren[0][0],
+                       padding = 0,
+                       scale = 0.7
+                       ),
+
                 widget.GroupBox(
                     highlight_method='block',
-                    this_current_screen_border=rubik[5],
-                    background=rubik[0]),
+                    this_current_screen_border=neon_mclaren[0][5],
+                    background=neon_mclaren[0][0]),
 
                 widget.Prompt(),
 
                 widget.WindowName(),
 
-                left_triangle(rubik[0], rubik[5]),
+                left_triangle(neon_mclaren[0][0], neon_mclaren[0][5]),
 
-                widget.Battery(format='{percent:2.0%}', full_char="", background=rubik[5]),
+                widget.Battery(format='{percent:2.0%}', full_char="", background=neon_mclaren[0][5]),
 
-                left_triangle(rubik[5], rubik[2]),
+                left_triangle(neon_mclaren[0][5], neon_mclaren[0][2]),
 
-                widget.TextBox(text="墳", fontsize="16", background=rubik[2]),
+                widget.TextBox(text="墳", fontsize="16", background=neon_mclaren[0][2]),
 
-                widget.Volume(font="Hack", fontsize="13", background=rubik[2], foreground=rubik[0]),
+                widget.Volume(font="Hack", fontsize="13", background=neon_mclaren[0][2], foreground=neon_mclaren[0][0]),
 
-                lower_left_triangle(rubik[0], rubik[2]),
+                lower_left_triangle(neon_mclaren[0][0], neon_mclaren[0][2]),
 
-                widget.CheckUpdates(distro="Arch_checkupdates", display_format="{updates} Updates", 
-                    fontsize=13, no_update_string=""),
+                widget.CheckUpdates(
+                    no_update_string="",
+                    font_size=13,
+                    update_interval = 1800,
+                    distro = "Arch_checkupdates",
+                    display_format = "Updates {updates} ",
+                    colour_have_updates = neon_mclaren[1][4],
+                    colour_no_updates = neon_mclaren[1][5],
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e paru')},
+                    padding = 5,
+                    background = neon_mclaren[0][5]
+                    ),
 
-                widget.GmailChecker(username="Joaquín", passowrd="Joaquin2007", email_path="jdomenech@escuelasproa.edu.ar"),
-
+                # TODO arreglar esto
+                #widget.GmailChecker(username="Joaquín", passowrd="Joaquin2007", email_path="jdomenech@escuelasproa.edu.ar"),
 
                 widget.Systray(),
 
-                upper_right_triangle(rubik[0], rubik[6]),
+                upper_right_triangle(neon_mclaren[0][0], neon_mclaren[0][6]),
 
-                widget.Clock(format="%d/%m %a %I:%M", background=rubik[6], foreground=rubik[0]),
+                widget.Clock(format="%H:%M %A %d/%m", padding=8, background=neon_mclaren[0][6], foreground=neon_mclaren[0][0]),
 
-                widget.KeyboardLayout(configured_keyboards=['us', 'es'], background=rubik[5]),
+                widget.KeyboardLayout(configured_keyboards=['us', 'es'], background=neon_mclaren[0][5], padding=8),
             ],
             24,
-            background=rubik[0]
         ),
-
-#        wallpaper=myWallpapers[random.randrange(0, len(myWallpapers), 1)],
-#        wallpaper=myWallpapers[3],
-#        wallpaper_mode='fill', 
-    ),
+    )
 ]
+
 
 # Drag floating layouts.
 mouse = [
@@ -230,6 +260,7 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -242,6 +273,7 @@ floating_layout = layout.Floating(
         Match(title="pinentry"),  # GPG key password entry
     ]
 )
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
@@ -253,6 +285,11 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
+# @hook.subscribe.startup_once
+# def start_once():
+#     home = os.path.expanduser('~')
+#     subprocess.call([home + '/.config/qtile/autostart.sh'])
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
@@ -263,7 +300,7 @@ wl_input_rules = None
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
- @hook.subscribe.startup_once
- def autostart():
-     home = os.path.expanduser('~/.config/qtile/autostart.sh')
-     subprocess.run([home])
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.run([home])
