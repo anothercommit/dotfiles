@@ -18,6 +18,7 @@ function fish_user_key_bindings
     fish_vi_key_bindings
 end
 
+alias icat='kitty +kitten icat'
 alias todo='bat ~/Notas/To\ Do.md'
 alias ntodo='nvim ~/Notas/To\ Do.md'
 alias pws='bat ~/Notas/Contraseñas.md'
