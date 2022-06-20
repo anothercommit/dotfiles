@@ -6,10 +6,6 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-import random
-
-
-
 # My files
 from unicodes import *
 from colors import *
@@ -17,8 +13,6 @@ from colors import *
 mod = "mod4"
 terminal = "kitty"
 browser = "librewolf"
-
-myWallpapers = []
 
 keys = [
 
@@ -154,13 +148,13 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
-    layout.Max(),
+    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
+    layout.MonadTall(border_width=1),
+    layout.Max(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -179,9 +173,9 @@ mouse = [
 
 
 widget_defaults = dict(
-    font="Delugia",
-    fontsize=13,
-    padding=3,
+    font="JetBrainsMono Nerd Font Bold",
+    fontsize=14,
+    padding=6,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -191,44 +185,40 @@ screens = [
             [
               widget.CurrentLayoutIcon(
                        custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                       foreground = neon_mclaren[0][2],
-                       background = neon_mclaren[0][0],
                        padding = 0,
                        scale = 0.7
                        ),
 
                 widget.GroupBox(
                     highlight_method='block',
-                    this_current_screen_border=neon_mclaren[0][5],
-                    background=neon_mclaren[0][0]),
+                    # this_current_screen_border=neon_mclaren[1][0]
+                    ),
 
                 widget.Prompt(),
 
-                widget.WindowName(),
+                widget.WindowName(
+                    foreground=neon_mclaren[1][2]
+                    ),
 
-                left_triangle(neon_mclaren[0][0], neon_mclaren[0][5]),
+                # left_triangle(neon_mclaren[0][0], neon_mclaren[0][5]),
+                widget.TextBox(text="", foreground=neon_mclaren[1][1]),
 
-                widget.Battery(format='{percent:2.0%}', full_char="", background=neon_mclaren[0][5]),
+                widget.Battery(format='{percent:2.0%}', full_char="", foreground=neon_mclaren[0][2]),
 
-                left_triangle(neon_mclaren[0][5], neon_mclaren[0][2]),
+                # left_triangle(neon_mclaren[0][5], neon_mclaren[0][2]),
 
-                widget.TextBox(text="墳", fontsize="16", background=neon_mclaren[0][2]),
+                widget.TextBox(text="墳", fontsize="16",),
 
-                widget.Volume(font="Hack", fontsize="13", background=neon_mclaren[0][2], foreground=neon_mclaren[0][0]),
+                widget.Volume(font="Hack", fontsize="13", foreground=neon_mclaren[0][0]),
 
-                lower_left_triangle(neon_mclaren[0][0], neon_mclaren[0][2]),
+                # lower_left_triangle(neon_mclaren[0][0], neon_mclaren[0][2]),
 
                 widget.CheckUpdates(
                     no_update_string="",
-                    font_size=13,
                     update_interval = 1800,
-                    distro = "Arch_checkupdates",
                     display_format = "Updates {updates} ",
-                    colour_have_updates = neon_mclaren[1][4],
-                    colour_no_updates = neon_mclaren[1][5],
                     mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e paru')},
                     padding = 5,
-                    background = neon_mclaren[0][5]
                     ),
 
                 # TODO arreglar esto
@@ -236,13 +226,19 @@ screens = [
 
                 widget.Systray(),
 
-                upper_right_triangle(neon_mclaren[0][0], neon_mclaren[0][6]),
+                # upper_right_triangle(neon_mclaren[0][0], neon_mclaren[0][6]),
 
-                widget.Clock(format="%H:%M %A %d/%m", padding=8, background=neon_mclaren[0][6], foreground=neon_mclaren[0][0]),
+                widget.Clock(format="%H:%M %A %d/%m", 
+                    padding=8, 
+                    foreground=neon_mclaren[1][1]),
 
-                widget.KeyboardLayout(configured_keyboards=['us', 'es'], background=neon_mclaren[0][5], padding=8),
+                widget.KeyboardLayout(configured_keyboards=['us', 'es'], 
+                        foreground=neon_mclaren[1][2],
+                        font="JetBrainsMono Nerd Font Extra Bold",
+                        padding=8)
             ],
             24,
+            background=neon_mclaren[0][1]
         ),
     )
 ]
@@ -285,11 +281,6 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
-# @hook.subscribe.startup_once
-# def start_once():
-#     home = os.path.expanduser('~')
-#     subprocess.call([home + '/.config/qtile/autostart.sh'])
-
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
@@ -299,8 +290,3 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
-
-@hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.run([home])

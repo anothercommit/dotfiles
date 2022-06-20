@@ -14,7 +14,7 @@ nnoremap <silent><M-h> :vertical resize +2<cr>
 
 nnoremap <silent>,<Tab> :BufferLineCycleNext<cr>
 nnoremap <silent>,<S-Tab> :BufferLineCyclePrev<cr>
-nnoremap <silent><Leader>.<Tab> :BufferLinePickClose<cr>
+nnoremap <silent><Leader>,<Tab> :BufferLinePickClose<cr>
 nnoremap <silent><Leader><Tab> :BufferLinePick<cr>
 
 nnoremap <silent><Leader>n :nohlsearch<cr>

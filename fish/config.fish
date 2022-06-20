@@ -1,5 +1,5 @@
 function fish_greeting
-    bat --paging=never ~/Notas/To\ Do.md    
+    # bat --paging=never ~/Notas/To\ Do.md    
 end
 
 if status is-interactive
@@ -28,6 +28,7 @@ alias ntodo='nvim ~/Notas/To\ Do.md'
 alias words='bat ~/Notas/Palabras\ pendientes\ anki.md'
 alias nwords='nvim ~/Notas/Palabras\ pendientes\ anki.md'
 alias commands='bat ~/Notas/Commands.md'
+alias rust-the-book='librewolf ~/repos/rust-book-es/second-edition/es/book/index.html'
 
 
 starship init fish | source
