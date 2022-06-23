@@ -1,0 +1,16 @@
+[2022-06-21 23:29:13.640] [exthost] [info] Extension host with pid 9131 started
+[2022-06-21 23:29:13.818] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-06-21 23:29:13.827] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+[2022-06-21 23:29:13.841] [exthost] [info] ExtensionService#_doActivateExtension vscode.ipynb, startup: true, activationEvent: '*'
+[2022-06-21 23:29:13.849] [exthost] [info] ExtensionService#_doActivateExtension oderwat.indent-rainbow, startup: true, activationEvent: '*'
+[2022-06-21 23:29:13.858] [exthost] [info] ExtensionService#_doActivateExtension sainnhe.everforest, startup: true, activationEvent: '*'
+[2022-06-21 23:29:13.948] [exthost] [info] ExtensionService#_doActivateExtension vscodevim.vim, startup: true, activationEvent: '*'
+[2022-06-21 23:29:14.130] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-06-21 23:29:14.206] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-06-21 23:29:14.259] [exthost] [info] Eager extensions activated
+[2022-06-21 23:29:14.299] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-06-21 23:29:14.319] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-06-21 23:29:56.424] [exthost] [info] Extension host terminating: received terminate message from renderer
+[2022-06-21 23:29:56.440] [exthost] [error] Error: read ECONNRESET
+    at Pipe.onStreamRead (node:internal/stream_base_commons:220:20)
+[2022-06-21 23:29:56.441] [exthost] [info] Extension host with pid 9131 exiting with code 0

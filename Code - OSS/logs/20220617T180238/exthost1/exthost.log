@@ -1,0 +1,18 @@
+[2022-06-17 18:02:41.089] [exthost] [info] Extension host with pid 55524 started
+[2022-06-17 18:02:41.194] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-06-17 18:02:41.200] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+[2022-06-17 18:02:41.207] [exthost] [info] ExtensionService#_doActivateExtension vscode.ipynb, startup: true, activationEvent: '*'
+[2022-06-17 18:02:41.271] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-06-17 18:02:41.312] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-06-17 18:02:41.340] [exthost] [info] Eager extensions activated
+[2022-06-17 18:02:41.359] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-06-17 18:02:41.369] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-06-17 18:03:23.544] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+[2022-06-17 18:03:23.552] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+[2022-06-17 18:03:23.643] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+[2022-06-17 18:04:24.091] [exthost] [info] ExtensionService#_doActivateExtension sainnhe.everforest, startup: false, activationEvent: '*'
+[2022-06-17 18:04:45.041] [exthost] [info] ExtensionService#_doActivateExtension oderwat.indent-rainbow, startup: false, activationEvent: '*'
+[2022-06-17 18:05:05.187] [exthost] [info] ExtensionService#_doActivateExtension vscodevim.vim, startup: false, activationEvent: '*'
+[2022-06-17 18:05:22.955] [exthost] [info] Extension host terminating: received terminate message from renderer
+[2022-06-17 18:05:22.985] [exthost] [error] Error: ENOENT: no such file or directory, open '/home/joaco/.config/Code - OSS/User/globalStorage/vscodevim.vim/.registers'
+[2022-06-17 18:05:22.987] [exthost] [info] Extension host with pid 55524 exiting with code 0

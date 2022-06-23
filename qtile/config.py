@@ -10,9 +10,11 @@ from libqtile.utils import guess_terminal
 from unicodes import *
 from colors import *
 
-mod = "mod4"
-terminal = "kitty"
+music_service = "spotify-launcher"
 browser = "librewolf"
+file_explorer = "lf"
+terminal = "kitty"
+mod = "mod4"
 
 keys = [
 
@@ -56,6 +58,11 @@ keys = [
      Key([mod], "b",
          lazy.spawn(browser)),
 
+     Key([mod], "s", 
+         lazy.spawn(music_service)),
+
+     Key([mod], "e", 
+         lazy.spawn(terminal+ " -e " + file_explorer)),
 
      KeyChord(["shift"], "space", [
          Key([], "r",
@@ -126,53 +133,26 @@ keys = [
         )
 ]
 
-groups = [Group("web", layout='border_focus_stack'),
-          Group("dev", layout='border_focus_stack'),
-          Group("ref", layout='border_focus_stack'),
-          Group("chat", layout='border_focus_stack'),
-          Group("music", layout='border_focus_stack'),
-          Group("space", layout='floating')]
+groups = [Group("web", layout='max'),
+          Group("dev", layout='monadtall'),
+          Group("ref", layout='monadtall'),
+          Group("chat", layout='max'),
+          Group("music", layout='max'),
+          Group("space", layout='monadtall')]
 
-groups = [Group(i) for i in "123456"]
 
-for i in groups:
-    keys.extend(
-        [
-            # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
-        ]
-    )
+keys.extend([
+    Key([mod], "1", lazy.group["web"].toscreen()),
+    Key([mod], "2", lazy.group["dev"].toscreen()),
+    Key([mod], "3", lazy.group["ref"].toscreen()),
+    Key([mod], "4", lazy.group["chat"].toscreen()),
+    Key([mod], "5", lazy.group["music"].toscreen()),
+    Key([mod], "6", lazy.group["space"].toscreen())
+    ])
 
 layouts = [
-    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    layout.MonadTall(border_width=1),
+    layout.MonadTall(),
     layout.Max(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 mouse = [
@@ -202,7 +182,7 @@ screens = [
                        ),
 
                 widget.GroupBox(
-                    highlight_method='block',
+                    highlight_method='block'
                     # this_current_screen_border=neon_mclaren[1][0]
                     ),
 
@@ -219,7 +199,7 @@ screens = [
 
                 # left_triangle(neon_mclaren[0][5], neon_mclaren[0][2]),
 
-                widget.TextBox(text="墳", fontsize="16",),
+                widget.TextBox(text="墳", fontsize="16"),
 
                 widget.Volume(font="Hack", fontsize="13", foreground=neon_mclaren[0][0]),
 
@@ -231,6 +211,7 @@ screens = [
                     display_format = "Updates {updates} ",
                     mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e paru')},
                     padding = 5,
+                    foreground=neon_mclaren[1][5]
                     ),
 
                 # TODO arreglar esto
@@ -254,7 +235,6 @@ screens = [
         ),
     )
 ]
-
 
 # Drag floating layouts.
 mouse = [
@@ -302,3 +282,7 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+# def my_func(text) for string in [" - Chromium", " - LibreWolf"]: 
+#     text = text.replace(string, "") 
+#     return textthen set option parse_text=my_func

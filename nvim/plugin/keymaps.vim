@@ -19,10 +19,10 @@ nnoremap <silent><Leader><Tab> :BufferLinePick<cr>
 
 nnoremap <silent><Leader>n :nohlsearch<cr>
 
-let $KEYMAPS = '/home/joaco/.config/nvim/plugin/keymaps.vim'
-let $SETTINGS = '/home/joaco/.config/nvim/plugin/settings.vim'
-let $PLUG = '/home/joaco/.config/nvim/plugin/plug.vim'
-let $LUA = '/home/joaco/.config/nvim/plugin/lua'
+let $KEYMAPS = '~/.config/nvim/plugin/keymaps.vim'
+let $SETTINGS = '~/.config/nvim/plugin/settings.vim'
+let $PLUG = '~/.config/nvim/plugin/plug.vim'
+let $LUA = '~/.config/nvim/plugin/lua'
 
 nnoremap <silent>.k :vsplit $KEYMAPS<cr>
 nnoremap <silent>.s :vsplit $SETTINGS<cr>

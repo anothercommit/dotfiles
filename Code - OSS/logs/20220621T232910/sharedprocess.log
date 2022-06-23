@@ -1,0 +1,8 @@
+[2022-06-21 23:29:14.489] [sharedprocess] [info] Starting worker process with pid 9177 (type: fileWatcher, window: 1).
+[2022-06-21 23:29:33.537] [sharedprocess] [info] Getting Manifest... rust-lang.rust
+[2022-06-21 23:29:33.805] [sharedprocess] [info] Installing extension: rust-lang.rust
+[2022-06-21 23:29:36.883] [sharedprocess] [info] Downloaded extension: rust-lang.rust /home/joaco/.config/Code - OSS/CachedExtensionVSIXs/rust-lang.rust-0.7.8
+[2022-06-21 23:29:37.002] [sharedprocess] [info] Extracted extension to /home/joaco/.vscode-oss/extensions/.e8ed5911-bdeb-4060-a249-939cff7dd323: rust-lang.rust
+[2022-06-21 23:29:37.010] [sharedprocess] [info] Renamed to /home/joaco/.vscode-oss/extensions/rust-lang.rust-0.7.8
+[2022-06-21 23:29:37.014] [sharedprocess] [info] Extracting completed. rust-lang.rust
+[2022-06-21 23:29:37.016] [sharedprocess] [info] Extension installed successfully: rust-lang.rust

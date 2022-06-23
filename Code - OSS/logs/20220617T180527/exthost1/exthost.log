@@ -1,0 +1,40 @@
+[2022-06-17 18:05:29.755] [exthost] [info] Extension host with pid 56924 started
+[2022-06-17 18:05:29.903] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+[2022-06-17 18:05:29.929] [exthost] [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+[2022-06-17 18:05:30.023] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-06-17 18:05:30.026] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
+[2022-06-17 18:05:30.029] [exthost] [info] ExtensionService#_doActivateExtension vscode.ipynb, startup: true, activationEvent: '*'
+[2022-06-17 18:05:30.033] [exthost] [info] ExtensionService#_doActivateExtension sainnhe.everforest, startup: true, activationEvent: '*'
+[2022-06-17 18:05:30.040] [exthost] [info] ExtensionService#_doActivateExtension vscodevim.vim, startup: true, activationEvent: '*'
+[2022-06-17 18:05:30.228] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-06-17 18:05:30.664] [exthost] [info] Eager extensions activated
+[2022-06-17 18:05:30.733] [exthost] [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+[2022-06-17 18:05:30.745] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-06-17 18:05:30.750] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-06-17 18:07:23.733] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+[2022-06-17 18:07:23.735] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+[2022-06-17 18:07:23.756] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+[2022-06-17 18:07:56.978] [exthost] [warning] TextEditor is closed/disposed
+[2022-06-17 18:07:56.978] [exthost] [warning] TextEditor is closed/disposed
+[2022-06-17 18:07:57.077] [exthost] [warning] ExtHostTextEditorOptions 'setCursorStyle' failed:'
+[2022-06-17 18:07:57.077] [exthost] [warning] {"name":"DISPOSED","message":"TextEditor(vs.editor.ICodeEditor:3,$model8) has been disposed"}
+[2022-06-17 18:08:46.011] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: vscode.github
+[2022-06-17 18:08:46.039] [exthost] [info] ExtensionService#_doActivateExtension oderwat.indent-rainbow, startup: false, activationEvent: '*'
+[2022-06-17 18:08:53.411] [exthost] [warning] TextEditor is closed/disposed
+[2022-06-17 18:08:53.411] [exthost] [warning] TextEditor is closed/disposed
+[2022-06-17 18:08:53.421] [exthost] [warning] ExtHostTextEditorOptions 'setCursorStyle' failed:'
+[2022-06-17 18:08:53.421] [exthost] [warning] {"name":"DISPOSED","message":"TextEditor(vs.editor.ICodeEditor:3,$model3) has been disposed"}
+[2022-06-17 18:08:56.405] [exthost] [info] Extension host terminating: received terminate message from renderer
+[2022-06-17 18:08:56.746] [exthost] [error] TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 't'
+    |     property '_readableState' -> object with constructor 'M'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 't.ConsoleForElectron'
+    --- property 'parent' closes the circle
+    at JSON.stringify (<anonymous>)
+    at /home/joaco/.vscode-oss/extensions/vscodevim.vim-1.22.2/src/register/register.ts:357:16
+    at process.async (node:internal/process/task_queues:96:5)
+    at Object.e.deactivate (/home/joaco/.vscode-oss/extensions/vscodevim.vim-1.22.2/extension.ts:64:8)
+    at async Promise.all (index 15)
+    at g._deactivateAll (/usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:88:10669)
+[2022-06-17 18:08:56.755] [exthost] [info] Extension host with pid 56924 exiting with code 0
