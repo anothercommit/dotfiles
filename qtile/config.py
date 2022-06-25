@@ -10,7 +10,7 @@ from libqtile.utils import guess_terminal
 from unicodes import *
 from colors import *
 
-music_service = "spotify-launcher"
+music_service = "nuclear"
 browser = "librewolf"
 file_explorer = "lf"
 terminal = "kitty"
@@ -53,6 +53,9 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     
+    Key(["shift"], "space",
+        lazy.spawn("rofi -show drun")
+    ),
 
     # Run
      Key([mod], "b",
@@ -64,26 +67,8 @@ keys = [
      Key([mod], "e", 
          lazy.spawn(terminal+ " -e " + file_explorer)),
 
-     KeyChord(["shift"], "space", [
-         Key([], "r",
-             lazy.spawn("rofi -show drun")
-         ),
-         Key([], "e",
-             lazy.spawn("rofi -show emoji")
-         ),
-         Key([], "c",
-             lazy.spawn("rofi -show calc")
-         ),
-         ]),
 
-
-    # Media 
-    Key([], "XF86AudioMute",
-        lazy.spawn("amixer sset Master toggle")),
-   
-    Key(["shift"], "XF86AudioRaiseVolume",
-        lazy.spawn("amixer sset Master 15%+")),
-
+    # Media Keys
     Key(["shift"], "XF86AudioLowerVolume",
         lazy.spawn("amixer sset Master 15%-")),
 
@@ -133,22 +118,33 @@ keys = [
         )
 ]
 
-groups = [Group("web", layout='max'),
-          Group("dev", layout='monadtall'),
-          Group("ref", layout='monadtall'),
-          Group("chat", layout='max'),
-          Group("music", layout='max'),
-          Group("space", layout='monadtall')]
+groups = [Group(i) for i in "123456789"]
 
+for i in groups:
+    keys.extend(
+        [
+            # mod1 + letter of group = switch to group
+            Key(
+                [mod],
+                i.name,
+                lazy.group[i.name].toscreen(),
+                desc="Switch to group {}".format(i.name),
+            ),
+            Key(
+                [mod, "shift"],
+                i.name,
+                lazy.window.togroup(i.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(i.name),
+            ),
+        ]
+    )
 
-keys.extend([
-    Key([mod], "1", lazy.group["web"].toscreen()),
-    Key([mod], "2", lazy.group["dev"].toscreen()),
-    Key([mod], "3", lazy.group["ref"].toscreen()),
-    Key([mod], "4", lazy.group["chat"].toscreen()),
-    Key([mod], "5", lazy.group["music"].toscreen()),
-    Key([mod], "6", lazy.group["space"].toscreen())
-    ])
+groups = [Group("1", layout='max', label='web'),
+          Group("2", layout='monadtall', label='dev'),
+          Group("3", layout='monadtall', label='ref'), 
+          Group("4", layout='max', label='chat'),
+          Group("5", layout='max', label='music'),
+          Group("6", layout='monadtall', label='space')]
 
 layouts = [
     layout.MonadTall(),
@@ -182,7 +178,7 @@ screens = [
                        ),
 
                 widget.GroupBox(
-                    highlight_method='block'
+                    highlight_method='line'
                     # this_current_screen_border=neon_mclaren[1][0]
                     ),
 
@@ -193,42 +189,47 @@ screens = [
                     ),
 
                 # left_triangle(neon_mclaren[0][0], neon_mclaren[0][5]),
-                widget.TextBox(text="", foreground=neon_mclaren[1][1]),
+                widget.TextBox(
+                    text="", 
+                    foreground=neon_mclaren[1][1]
+                    ),
 
-                widget.Battery(format='{percent:2.0%}', full_char="", foreground=neon_mclaren[0][2]),
+                widget.Battery(
+                    format='{percent:2.0%}', 
+                    full_char="", 
+                    foreground=neon_mclaren[0][2]
+                    ),
 
                 # left_triangle(neon_mclaren[0][5], neon_mclaren[0][2]),
 
-                widget.TextBox(text="墳", fontsize="16"),
-
-                widget.Volume(font="Hack", fontsize="13", foreground=neon_mclaren[0][0]),
-
-                # lower_left_triangle(neon_mclaren[0][0], neon_mclaren[0][2]),
-
-                widget.CheckUpdates(
-                    no_update_string="",
-                    update_interval = 1800,
-                    display_format = "Updates {updates} ",
-                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e paru')},
-                    padding = 5,
-                    foreground=neon_mclaren[1][5]
+                widget.TextBox(
+                    text="墳", 
+                    fontsize="16", 
+                    padding=2
                     ),
 
-                # TODO arreglar esto
-                #widget.GmailChecker(username="Joaquín", passowrd="Joaquin2007", email_path="jdomenech@escuelasproa.edu.ar"),
+                widget.Volume(
+                    foreground=neon_mclaren[0][0]
+                    ),
+
+                # lower_left_triangle(neon_mclaren[0][0], neon_mclaren[0][2]),
 
                 widget.Systray(),
 
                 # upper_right_triangle(neon_mclaren[0][0], neon_mclaren[0][6]),
 
-                widget.Clock(format="%H:%M %A %d/%m", 
+                widget.Clock(
+                    format="%H:%M %d/%m", 
                     padding=8, 
-                    foreground=neon_mclaren[1][1]),
+                    foreground=neon_mclaren[1][1]
+                    ),
 
-                widget.KeyboardLayout(configured_keyboards=['us', 'es'], 
-                        foreground=neon_mclaren[1][2],
-                        font="JetBrainsMono Nerd Font Extra Bold",
-                        padding=8)
+                widget.KeyboardLayout(
+                    configured_keyboards=['us', 'es'], 
+                    foreground=neon_mclaren[1][2],
+                    font="JetBrainsMono Nerd Font Extra Bold",
+                    padding=8
+                    )
             ],
             24,
             background=neon_mclaren[0][1]
