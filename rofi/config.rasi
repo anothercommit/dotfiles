@@ -1,6 +1,6 @@
 configuration {
-	modi: "window,run,emoji,drun,calc";
-	font: "Delugia Mono 12";
+	modi: "window,emoji,drun,calc";
+	/* font: "Delugia Mono 12"; */
 	/*location: 0;*/
 	/*yoffset: 0;*/
 	/*xoffset: 0;*/
@@ -145,3 +145,6 @@ configuration {
  /*     sorting-method:    "name";*/
  /* }*/
 }
+
+/* @theme "~/.config/rofi/rofi-themes-collection/themes/nord.rasi" */
+@theme "/home/joaco/.local/share/rofi/themes/rounded-red-dark.rasi"

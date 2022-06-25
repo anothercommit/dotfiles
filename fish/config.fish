@@ -32,3 +32,4 @@ alias rust-the-book='librewolf ~/repos/rust-book-es/second-edition/es/book/index
 
 
 starship init fish | source
+zoxide init fish | source
