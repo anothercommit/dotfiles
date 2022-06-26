@@ -1,4 +1,0 @@
-[2022-06-17 18:02:38.347] [main] [info] update#ctor - updates are disabled as there is no update URL
-[2022-06-17 18:02:40.010] [main] [info] Starting extension host with pid 55524 (fork() took 102 ms).
-[2022-06-17 18:05:22.966] [main] [info] Waiting for extension host with pid 55524 to exit.
-[2022-06-17 18:05:23.001] [main] [info] Extension host with pid 55524 exited with code: 0, signal: null.

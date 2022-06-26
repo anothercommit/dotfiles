@@ -1,9 +1,0 @@
-[2022-06-17 18:02:04.163] [sharedprocess] [info] Starting worker process with pid 55077 (type: fileWatcher, window: 1).
-[2022-06-17 18:02:21.919] [sharedprocess] [info] Getting Manifest... ms-ceintl.vscode-language-pack-es
-[2022-06-17 18:02:22.155] [sharedprocess] [info] Installing extension: ms-ceintl.vscode-language-pack-es
-[2022-06-17 18:02:24.345] [sharedprocess] [info] Downloaded extension: ms-ceintl.vscode-language-pack-es /home/joaco/.config/Code - OSS/CachedExtensionVSIXs/ms-ceintl.vscode-language-pack-es-1.68.3
-[2022-06-17 18:02:24.559] [sharedprocess] [info] Extracted extension to /home/joaco/.vscode-oss/extensions/.7147aac9-c496-4779-a063-03ab38f91c7f: ms-ceintl.vscode-language-pack-es
-[2022-06-17 18:02:24.568] [sharedprocess] [info] Renamed to /home/joaco/.vscode-oss/extensions/ms-ceintl.vscode-language-pack-es-1.68.3
-[2022-06-17 18:02:24.571] [sharedprocess] [info] Extracting completed. ms-ceintl.vscode-language-pack-es
-[2022-06-17 18:02:24.571] [sharedprocess] [info] Adding language packs from the extension ms-ceintl.vscode-language-pack-es
-[2022-06-17 18:02:24.654] [sharedprocess] [info] Extension installed successfully: ms-ceintl.vscode-language-pack-es
