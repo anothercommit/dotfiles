@@ -2,25 +2,18 @@ import os
 import subprocess
 from libqtile import hook
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, EzKey, KeyChord, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 # My files
+from unicodes import *
 from colors import *
 
-music_service = "spotify-launcher"
-browser = "librewolf"
-file_explorer = "lf"
-terminal = "kitty"
 mod = "mod4"
-modifier_keys = {
-   'M': 'mod4',
-   'A': 'mod1',
-   'S': 'shift',
-   'C': 'control',
-}
-
+terminal = "kitty"
+browser = "librewolf"
+musicService = "spotify-launcher"
 
 keys = [
 
@@ -59,42 +52,42 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     
-    Key([mod, "shift"], "space",
-        lazy.spawn("rofi -show drun")
-    ),
 
     # Run
-    Key([mod], "b",
-        lazy.spawn(browser)),
+     Key([mod], "b",
+         lazy.spawn(browser)),
 
-    Key([mod], "s", 
-        lazy.spawn(music_service)),
+     Key([mod], "s", 
+         lazy.spawn(musicService)),
 
-    Key([mod], "e",
-        lazy.spawn(terminal + " -e " + file_explorer)),
+     KeyChord(["shift"], "space", [
+         Key([], "r",
+             lazy.spawn("rofi -show drun")
+         ),
+         Key([], "e",
+             lazy.spawn("rofi -show emoji")
+         ),
+         Key([], "c",
+             lazy.spawn("rofi -show calc")
+         ),
+         ]),
 
-     Key([mod], "d", 
-        lazy.spawn("discord")),
 
+    # Media 
+    Key([], "XF86AudioMute",
+        lazy.spawn("amixer sset Master toggle")),
+   
+    Key(["shift"], "XF86AudioRaiseVolume",
+        lazy.spawn("amixer sset Master 15%+")),
 
-    # Media Keys
-    # TODO
-    # XF86AudioMute
-    # XF86AudioNext
-    # XF86AudioPrev
-
+    Key(["shift"], "XF86AudioLowerVolume",
+        lazy.spawn("amixer sset Master 15%-")),
 
     Key([], "XF86AudioRaiseVolume",
         lazy.spawn("amixer sset Master 1%+")),
 
-    Key(["shift"], "XF86AudioRaiseVolume",
-        lazy.spawn("amixer sset Master 15%+")),
-
     Key([], "XF86AudioLowerVolume",
         lazy.spawn("amixer sset Master 1%-")),
-
-    Key(["shift"], "XF86AudioLowerVolume",
-        lazy.spawn("amixer sset Master 15%-")),
 
     Key([], "XF86MonBrightnessUp",
         lazy.spawn("brillo -q -A 5")),
@@ -108,17 +101,11 @@ keys = [
     Key(["shift"], "XF86MonBrightnessDown",
             lazy.spawn("brillo -q -U 15")),
 
-    Key([], "Print",
-            lazy.spawn(["sh", "-c", "maim | xclip -selection clipboard -t image/png"])),
-
-    Key(["shift"], "Print",
-            lazy.spawn(["sh", "-c", "maim -s | xclip -selection clipboard -t image/png"])),
-
-    Key([mod], "Print",
-            lazy.spawn(["sh", "-c", "maim ~/Media/Pictures/$(date +%s).jpg"])),
-
-    Key([mod, "shift"], "Print",
-            lazy.spawn(["sh", "-c", "maim -s ~/Media/Pictures/$(date +%s).jpg"])),
+    # Key([], "print", 
+    #         lazy.spawn("maim -s | xclip -selection clipboard -t image/png")),
+    # 
+    # Key(["shift"], "print",
+    #         lazy.spawn("maim -s screenshot.jpg")),
 
 
     # Change Keyboard Layout 
@@ -136,42 +123,50 @@ keys = [
         desc='toggle floating'
         ),
 
-    EzKey("M-f",
+    Key([mod], "f",
         lazy.window.toggle_fullscreen(),
         desc='toggle fullscreen'
         )
 ]
 
-groups = [Group(i) for i in "123456789"]
+# groups = [Group(1, layout='max'#, label='web'
+#               ),
+#           Group(2, layout='monadtall'#, label='dev'
+#               ),
+#           Group(3, layout='monadtall'#, label='ref'
+#               ),
+#           Group(4, layout='max'#, label='chat'
+#               ),
+#           Group(5, layout='max'#, label='music'
+#               ),
+#           Group(6, layout='floating'#,label='space'
+#               )]
 
-for i in groups:
-    keys.extend(
-        [
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-        ]
-    )
+groups = [Group(i) for i in "123456"]
 
-groups = [Group("1", layout='max', label='web'),
-          Group("2", layout='monadtall', label='dev'),
-          Group("3", layout='monadtall', label='ref'), 
-          Group("4", layout='max', label='chat'),
-          Group("5", layout='max', label='music'),
-          Group("6", layout='monadtall', label='space')]
+# keys.extend([
+#     Key([mod], 1, lazy.group["2"].toscreen())
+#     # Key([mod], 2, lazy.group[""].toscreen()),
+#     # Key([mod], 3, lazy.group["ref"].toscreen()),
+#     # Key([mod], 4, lazy.group["chat"].toscreen()),
+#     # Key([mod], 5, lazy.group["music"].toscreen()),
+#     # Key([mod], 6, lazy.group["space"].toscreen())
+#     ])
 
 layouts = [
+    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
+    # Try more layouts by unleashing below layouts.
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
+    # layout.Matrix(),
     layout.MonadTall(),
     layout.Max(),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
 ]
 
 mouse = [
@@ -201,7 +196,8 @@ screens = [
                        ),
 
                 widget.GroupBox(
-                    highlight_method='line'
+                    highlight_method='block',
+                    # this_current_screen_border=neon_mclaren[1][0]
                     ),
 
                 widget.Prompt(),
@@ -210,69 +206,50 @@ screens = [
                     foreground=neon_mclaren[1][2]
                     ),
 
-                widget.TextBox(
-                    text="", 
-                    foreground=neon_mclaren[1][1],
-                    padding=4
+                # left_triangle(neon_mclaren[0][0], neon_mclaren[0][5]),
+                widget.TextBox(text="", foreground=neon_mclaren[1][1]),
+
+                widget.Battery(format='{percent:2.0%}', full_char="", foreground=neon_mclaren[0][2]),
+
+                # left_triangle(neon_mclaren[0][5], neon_mclaren[0][2]),
+
+                widget.TextBox(text="墳", fontsize="16",),
+
+                widget.Volume(font="Hack", fontsize="13", foreground=neon_mclaren[0][0]),
+
+                # lower_left_triangle(neon_mclaren[0][0], neon_mclaren[0][2]),
+
+                widget.CheckUpdates(
+                    no_update_string="",
+                    update_interval = 1800,
+                    display_format = "Updates {updates} ",
+                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e paru')},
+                    padding = 5,
+                    foreground=neon_mclaren[1][5]
                     ),
 
-                widget.Battery(
-                    format='{percent:2.0%}', 
-                    foreground=neon_mclaren[0][2]
-                    ),
-
-                widget.Sep(
-                    padding=10,
-                    linewidth=0
-                    ),
-
-                widget.TextBox(
-                    text="墳", 
-                    fontsize="16", 
-                    padding=4,
-                    mouse_callbacks={"Button1": lazy.spawn("pavucontrol")}
-                    ),
-
-                widget.Volume(
-                    foreground=neon_mclaren[0][0]
-                    ),
-
-                widget.TextBox(
-                    text="\\", 
-                    fontsize=32,
-                    foreground="#666666",
-                    padding=4
-                    ),
+                # TODO arreglar esto
+                #widget.GmailChecker(username="Joaquín", passowrd="Joaquin2007", email_path="jdomenech@escuelasproa.edu.ar"),
 
                 widget.Systray(),
 
-                widget.TextBox(
-                    text="\\", 
-                    fontsize=32,
-                    foreground="#666666",
-                    padding=4
-                    ),
+                # upper_right_triangle(neon_mclaren[0][0], neon_mclaren[0][6]),
 
-                widget.CheckUpdates(),
-
-                widget.Clock(
-                    format="%H:%M %d/%m", 
+                widget.Clock(format="%H:%M %A %d/%m", 
                     padding=8, 
-                    foreground=neon_mclaren[1][1],
-                    ),
+                    foreground=neon_mclaren[1][1]),
 
-                widget.KeyboardLayout(
-                    configured_keyboards=['us', 'es'], 
-                    foreground=neon_mclaren[1][2],
-                    font="JetBrainsMono Nerd Font Extra Bold",
-                    padding=8
-                    )
+                widget.KeyboardLayout(configured_keyboards=['us', 'es'], 
+                        foreground=neon_mclaren[1][2],
+                        font="JetBrainsMono Nerd Font Extra Bold",
+                        padding=8)
             ],
             24,
             background=neon_mclaren[0][1]
         ),
     )
 ]
+
 
 # Drag floating layouts.
 mouse = [
@@ -286,6 +263,7 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
