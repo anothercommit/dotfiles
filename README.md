@@ -1,2 +1,1 @@
-# .config
-My config files.
+# Another commit with my dotfiles 😎
