@@ -212,13 +212,13 @@ screens = [
 
                 widget.TextBox(
                     text="", 
-                    foreground=neon_mclaren[1][1],
+                    foreground=neon_mclaren[0][2],
                     padding=4
                     ),
 
                 widget.Battery(
                     format='{percent:2.0%}', 
-                    foreground=neon_mclaren[0][2]
+                    foreground="#ffffff"
                     ),
 
                 widget.Sep(
@@ -229,16 +229,17 @@ screens = [
                 widget.TextBox(
                     text="墳", 
                     fontsize="16", 
+                    foreground=neon_mclaren[0][2],
                     padding=4,
                     mouse_callbacks={"Button1": lazy.spawn("pavucontrol")}
                     ),
 
                 widget.Volume(
-                    foreground=neon_mclaren[0][0]
+                    foreground="#ffffff"
                     ),
 
                 widget.TextBox(
-                    text="\\", 
+                    text="/", 
                     fontsize=32,
                     foreground="#666666",
                     padding=4
@@ -247,13 +248,26 @@ screens = [
                 widget.Systray(),
 
                 widget.TextBox(
-                    text="\\", 
+                    text="ﮮ", 
+                    fontsize=20,
+                    foreground=neon_mclaren[0][2],
+                    padding=4
+                    ),
+
+                widget.CheckUpdates(
+                    display_format='{updates}',
+                    no_update_string='',
+                    update_interval=30,
+                    foreground=neon_mclaren[1][5],
+                    fontsize=16
+                        ),
+
+                widget.TextBox(
+                    text="/", 
                     fontsize=32,
                     foreground="#666666",
                     padding=4
                     ),
-
-                widget.CheckUpdates(),
 
                 widget.Clock(
                     format="%H:%M %d/%m", 
