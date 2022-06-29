@@ -30,8 +30,7 @@ nnoremap <silent>.p :vsplit $PLUG<cr>
 nnoremap <silent>.i :vsplit $MYVIMRC<cr>
 nnoremap <silent>.l :vsplit $LUA<cr>
 
-nnoremap <silent><C-n> :NvimTreeToggle<cr>
+noremap <silent><C-n> :NvimTreeToggle<cr>
 
-nnoremap <silent><Leader>s :HopChar2<cr>
-nnoremap <silent>,l :HopLine<cr>
-nnoremap <silent>,w :HopWord<cr>
+nnoremap <silent>f :lua require'hop'.hint_char1()<cr>
+nnoremap <silent>,l :lua require'hop'.hint_lines()<cr>

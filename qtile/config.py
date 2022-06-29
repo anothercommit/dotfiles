@@ -76,6 +76,9 @@ keys = [
      Key([mod], "d", 
         lazy.spawn("discord")),
 
+     Key([mod], "h", 
+        lazy.spawn(terminal+" -e htop")),
+
 
     # Media Keys
     # TODO
@@ -174,15 +177,6 @@ layouts = [
     layout.Max(),
 ]
 
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
-]
-
-
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font Bold",
     fontsize=14,
@@ -259,8 +253,10 @@ screens = [
                     no_update_string='',
                     update_interval=30,
                     foreground=neon_mclaren[1][5],
-                    fontsize=16
-                        ),
+                    fontsize=16,
+                    mouse_callbacks={"Button1" : lazy.spawn(terminal+" -e topgrade")}
+                    ),
+
 
                 widget.TextBox(
                     text="/", 
@@ -280,9 +276,25 @@ screens = [
                     foreground=neon_mclaren[1][2],
                     font="JetBrainsMono Nerd Font Extra Bold",
                     padding=8
+                    ),
+
+                widget.TextBox(
+                    text="", 
+                    fontsize=18,
+                    foreground="#666666",
+                    padding=8
+                    ),
+
+                widget.TextBox(
+                    text="", 
+                    fontsize=18,
+                    foreground="#666666",
+                    padding=8,
+                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "shutdown now"])}
                     )
             ],
-            24,
+            28,
+            opacity=0.90,
             background=neon_mclaren[0][1]
         ),
     )

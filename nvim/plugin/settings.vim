@@ -11,6 +11,7 @@ set hlsearch
 set splitright
 set splitbelow
 set nowrap
+set smartindent
 set smarttab
 set shiftwidth=4
 set expandtab
