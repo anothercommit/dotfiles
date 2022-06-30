@@ -165,12 +165,12 @@ for i in groups:
         ]
     )
 
-groups = [Group("1", layout='max', label='web'),
-          Group("2", layout='monadtall', label='dev'),
-          Group("3", layout='monadtall', label='ref'), 
-          Group("4", layout='max', label='chat'),
-          Group("5", layout='max', label='music'),
-          Group("6", layout='monadtall', label='space')]
+groups = [Group("1", layout='max', label=''),
+          Group("2", layout='monadtall', label=''),
+          Group("3", layout='monadtall', label=''), 
+          Group("4", layout='max', label=''),
+          Group("5", layout='max', label=''),
+          Group("6", layout='monadtall', label='')]
 
 layouts = [
     layout.MonadTall(),
@@ -178,7 +178,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="JetBrainsMono Nerd Font Bold",
+    font="JetBrainsMono Medium Nerd Font",
     fontsize=14,
     padding=6,
 )
@@ -274,26 +274,32 @@ screens = [
                 widget.KeyboardLayout(
                     configured_keyboards=['us', 'es'], 
                     foreground=neon_mclaren[1][2],
-                    font="JetBrainsMono Nerd Font Extra Bold",
+                    font="JetBrainsMono ExtraBold Nerd Font",
+                    fontsize=15,
+                    padding=8
+                    ),
+
+                widget.TextBox(
+                    text="", 
+                    fontsize=18,
+                    foreground="#888888",
                     padding=8
                     ),
 
                 widget.TextBox(
                     text="", 
                     fontsize=18,
-                    foreground="#666666",
-                    padding=8
-                    ),
-
-                widget.TextBox(
-                    text="", 
-                    fontsize=18,
-                    foreground="#666666",
-                    padding=8,
+                    foreground="#888888",
+                    padding=12,
                     mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "shutdown now"])}
+                    ),
+
+                widget.Sep(
+                    padding=3,
+                    linewidth=0
                     )
             ],
-            28,
+            24,
             opacity=0.90,
             background=neon_mclaren[0][1]
         ),

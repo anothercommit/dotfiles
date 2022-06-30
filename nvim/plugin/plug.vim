@@ -5,7 +5,7 @@ Plug 'phaazon/hop.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'akinsho/bufferline.nvim'
+" Plug 'akinsho/bufferline.nvim'
 
 Plug 'windwp/nvim-autopairs'
 

@@ -12,10 +12,11 @@ nnoremap <silent><M-j> :resize +2<cr>
 nnoremap <silent><M-l> :vertical resize -2<cr>
 nnoremap <silent><M-h> :vertical resize +2<cr>
 
-nnoremap <silent>,<Tab> :BufferLineCycleNext<cr>
-nnoremap <silent>,<S-Tab> :BufferLineCyclePrev<cr>
-nnoremap <silent><Leader>,<Tab> :BufferLinePickClose<cr>
-nnoremap <silent><Leader><Tab> :BufferLinePick<cr>
+" nnoremap <silent>,<Tab> :BufferLineCycleNext<cr>
+" nnoremap <silent>,<S-Tab> :BufferLineCyclePrev<cr>
+" nnoremap <silent><Leader>,<Tab> :BufferLinePickClose<cr>
+" nnoremap <silent><Leader><Tab> :BufferLinePick<cr>
+
 
 nnoremap <silent><Leader>n :nohlsearch<cr>
 
@@ -32,5 +33,6 @@ nnoremap <silent>.l :vsplit $LUA<cr>
 
 noremap <silent><C-n> :NvimTreeToggle<cr>
 
+noremap <silent><C-f> :FZF<cr>
 nnoremap <silent>f :lua require'hop'.hint_char1()<cr>
 nnoremap <silent>,l :lua require'hop'.hint_lines()<cr>
