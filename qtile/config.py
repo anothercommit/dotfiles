@@ -58,6 +58,8 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod,"control", "shift"], "r",
+            lazy.spawn(["sh", "-c", "sudo reboot now"])),
     
     Key([mod, "shift"], "space",
         lazy.spawn("rofi -show drun")
@@ -76,8 +78,8 @@ keys = [
      Key([mod], "d", 
         lazy.spawn("discord")),
 
-     Key([mod], "h", 
-        lazy.spawn(terminal+" -e htop")),
+     Key([mod,  "shift"], "h", 
+        lazy.spawn(terminal+" -e bashtop")),
 
 
     # Media Keys
@@ -86,6 +88,8 @@ keys = [
     # XF86AudioNext
     # XF86AudioPrev
 
+    Key([], "XF86AudioMute",
+        lazy.spawn("amixer sset Master toggle")),
 
     Key([], "XF86AudioRaiseVolume",
         lazy.spawn("amixer sset Master 1%+")),
@@ -178,7 +182,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="JetBrainsMono Medium Nerd Font",
+    font="JetBrainsMono Nerd Font Bold",
     fontsize=14,
     padding=6,
 )
@@ -283,7 +287,8 @@ screens = [
                     text="", 
                     fontsize=18,
                     foreground="#888888",
-                    padding=8
+                    padding=8,
+                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "reboot now"])}
                     ),
 
                 widget.TextBox(

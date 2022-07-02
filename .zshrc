@@ -11,6 +11,8 @@ else
   export EDITOR='nvim'
 fi
 
+export PATH="/home/joaco/.local/bin:$PATH"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -40,15 +42,17 @@ alias words='bat ~/Notas/Palabras\ pendientes\ anki.md'
 alias nwords='nvim ~/Notas/Palabras\ pendientes\ anki.md'      
 alias commands='bat ~/Notas/cheatsheets/Commands.md'           
 alias ncommands='nvim ~/Notas/cheatsheets/Commands.md'         
-alias rust-the-book='librewolf ~/repos/rust-book-es/second-edit'
 alias zshconf='nvim ~/.zshrc'                
+
 alias l='exa'                                                  
 alias la='exa -a'                                              
 alias ll='exa -al'                                             
 alias lt='exa -T'                                              
 alias llt='exa -alT'                                           
+
 alias icat='kitty +kitten icat'                                
 alias p='sudo pacman'                                          
+alias sp='sudo pacman'                                          
 alias code='codium'                                            
 alias du='du -sh'                                              
 alias df='df -h'
