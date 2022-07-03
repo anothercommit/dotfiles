@@ -35,31 +35,65 @@ use 'wbthomason/packer.nvim'
 
 use 'neovim/nvim-lspconfig'
 
+use 'hrsh7th/nvim-cmp'
+use 'hrsh7th/cmp-nvim-lsp'
+use 'hrsh7th/cmp-buffer'
+use 'hrsh7th/cmp-path'
+use 'L3MON4D3/LuaSnip'
+use 'saadparwaiz1/cmp_luasnip'
+
+
 use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
---use({
---  'glepnir/galaxyline.nvim',
---  branch = 'main',
---  -- your statusline
---  config = function()
---    require('my_statusline')
---  end,
---  -- some optional icons
---  requires = { 'kyazdani42/nvim-web-devicons', opt = true },
---})
+
+-- use {
+--   'glepnir/galaxyline.nvim', branch = 'main',
+--   config = function() require('galaxyline') end
+-- }
+
+use {
+    "kyazdani42/nvim-web-devicons", 
+    config = function() require'nvim-web-devicons'.setup {} end
+}
+
+use {
+    'junegunn/goyo.vim',
+    requires = 'junegunn/limelight.vim'
+}
+
+use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end
+})
+
+use {
+	"windwp/nvim-autopairs",
+    config = function() require'nvim-autopairs'.setup{} end
+}
+
+use {
+    'numToStr/Comment.nvim',
+    config = function() require'Comment'.setup() end
+}
+
+use {
+  'nvim-telescope/telescope.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} }
+}
+
+use {
+    'nvim-lualine/lualine.nvim', 
+    config = function() require'lualine'.setup{} end
+}
 
 use 'tpope/vim-fugitive'
+use 'junegunn/fzf.vim'
 use 'phaazon/hop.nvim'
 use 'kyazdani42/nvim-tree.lua'
-use 'junegunn/fzf.vim'
-use 'windwp/nvim-autopairs'
-use 'numToStr/Comment.nvim'                                                          
+
+-- Themes
 use 'sainnhe/everforest'                                        
 use 'EdenEast/nightfox.nvim'                                    
 use 'dracula/vim'                                               
 use 'sainnhe/sonokai'    
-
-use 'nvim-lualine/lualine.nvim'
-use 'akinsho/bufferline.nvim'
 end)
-
