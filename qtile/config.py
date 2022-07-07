@@ -107,6 +107,18 @@ keys = [
     Key(["shift"], "XF86AudioLowerVolume",
         lazy.spawn("amixer sset Master 15%-")),
 
+    Key([], "F9",
+        lazy.spawn("brillo -q -A 5")),
+
+    Key([], "F8",
+        lazy.spawn("brillo -q -U 5")),
+
+    Key(["shift"], "F9",
+             lazy.spawn("brillo -q -A 15")),
+
+    Key(["shift"], "F8",
+            lazy.spawn("brillo -q -U 15")),
+
     Key([], "XF86MonBrightnessUp",
         lazy.spawn("brillo -q -A 5")),
 
