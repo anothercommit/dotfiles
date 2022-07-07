@@ -1,3 +1,4 @@
+-- Various autocmds and functions{{{
 local fn = vim.fn
 
 -- Automatically install packer
@@ -28,6 +29,7 @@ local status_ok, packer = pcall(require, "packer")
 if not status_ok then
 	return
 end
+--}}}
 
 return packer.startup(function(use)
      
@@ -36,15 +38,18 @@ use 'wbthomason/packer.nvim'
 use 'neovim/nvim-lspconfig'
 
 use 'hrsh7th/nvim-cmp'
-use 'hrsh7th/cmp-nvim-lsp'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/cmp-path'
-use 'L3MON4D3/LuaSnip'
+use 'hrsh7th/cmp-nvim-lua'
+use 'hrsh7th/cmp-nvim-lsp'
+
 use 'saadparwaiz1/cmp_luasnip'
+use 'L3MON4D3/LuaSnip'
+
+use 'onsails/lspkind.nvim'
 
 
 use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
 
 -- use {
 --   'glepnir/galaxyline.nvim', branch = 'main',
@@ -66,10 +71,6 @@ use({
     run = function() vim.fn["mkdp#util#install"]() end
 })
 
-use {
-	"windwp/nvim-autopairs",
-    config = function() require'nvim-autopairs'.setup{} end
-}
 
 use {
     'numToStr/Comment.nvim',
@@ -81,19 +82,21 @@ use {
   requires = { {'nvim-lua/plenary.nvim'} }
 }
 
-use {
-    'nvim-lualine/lualine.nvim', 
-    config = function() require'lualine'.setup{} end
-}
+use 'rust-lang/rust.vim'
 
+use 'nvim-lualine/lualine.nvim'
 use 'tpope/vim-fugitive'
 use 'junegunn/fzf.vim'
 use 'phaazon/hop.nvim'
 use 'kyazdani42/nvim-tree.lua'
+use 'kshenoy/vim-signature'
+use "windwp/nvim-autopairs"
 
 -- Themes
 use 'sainnhe/everforest'                                        
 use 'EdenEast/nightfox.nvim'                                    
 use 'dracula/vim'                                               
 use 'sainnhe/sonokai'    
+use 'VDuchauffour/neodark.nvim'
+use 'navarasu/onedark.nvim'
 end)
