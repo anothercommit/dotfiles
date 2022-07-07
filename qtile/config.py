@@ -6,11 +6,11 @@ from libqtile.config import Click, Drag, Group, Key, EzKey, KeyChord, Match, Scr
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-# My files
+# My files 
 from colors import *
 
 music_service = "spotify-launcher"
-browser = "librewolf"
+browser = "chromium --chromium --force-dark-mode --enable-features=WebUIDarkMode"
 file_explorer = "lf"
 terminal = "kitty"
 mod = "mod4"
@@ -78,8 +78,12 @@ keys = [
      Key([mod], "d", 
         lazy.spawn("discord")),
 
-     Key([mod,  "shift"], "h", 
-        lazy.spawn(terminal+" -e bashtop")),
+     Key([mod,  "shift"], "p", 
+        lazy.spawn(terminal+" -e htop")),
+
+     Key([mod], "p", lazy.spawn(terminal+" -e nvim /home/joaco/Notas/Palabras\ pendientes\ anki.md")),
+
+     Key(["control"], "p", lazy.spawn(terminal + " -e nvim /home/joaco/Notas/passwords.txt")),
 
 
     # Media Keys
@@ -288,7 +292,7 @@ screens = [
                     fontsize=18,
                     foreground="#888888",
                     padding=8,
-                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "reboot now"])}
+                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl reboot"])}
                     ),
 
                 widget.TextBox(
@@ -296,7 +300,7 @@ screens = [
                     fontsize=18,
                     foreground="#888888",
                     padding=12,
-                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "shutdown now"])}
+                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl poweroff"])}
                     ),
 
                 widget.Sep(
@@ -306,7 +310,127 @@ screens = [
             ],
             24,
             opacity=0.90,
-            background=neon_mclaren[0][1]
+            background="#000000"
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+              widget.CurrentLayoutIcon(
+                       custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+                       padding = 0,
+                       scale = 0.7
+                       ),
+
+                widget.GroupBox(
+                    highlight_method='line'
+                    ),
+
+                widget.Prompt(),
+
+                widget.WindowName(
+                    foreground=neon_mclaren[1][2]
+                    ),
+
+                widget.TextBox(
+                    text="", 
+                    foreground=neon_mclaren[0][2],
+                    padding=4
+                    ),
+
+                widget.Battery(
+                    format='{percent:2.0%}', 
+                    foreground="#ffffff"
+                    ),
+
+                widget.Sep(
+                    padding=10,
+                    linewidth=0
+                    ),
+
+                widget.TextBox(
+                    text="墳", 
+                    fontsize="16", 
+                    foreground=neon_mclaren[0][2],
+                    padding=4,
+                    mouse_callbacks={"Button1": lazy.spawn("pavucontrol")}
+                    ),
+
+                widget.Volume(
+                    foreground="#ffffff"
+                    ),
+
+                widget.TextBox(
+                    text="/", 
+                    fontsize=32,
+                    foreground="#666666",
+                    padding=4
+                    ),
+
+                widget.Systray(),
+
+                widget.TextBox(
+                    text="ﮮ", 
+                    fontsize=20,
+                    foreground=neon_mclaren[0][2],
+                    padding=4
+                    ),
+
+                widget.CheckUpdates(
+                    display_format='{updates}',
+                    no_update_string='',
+                    update_interval=30,
+                    foreground=neon_mclaren[1][5],
+                    fontsize=16,
+                    mouse_callbacks={"Button1" : lazy.spawn(terminal+" -e topgrade")}
+                    ),
+
+
+                widget.TextBox(
+                    text="/", 
+                    fontsize=32,
+                    foreground="#666666",
+                    padding=4
+                    ),
+
+                widget.Clock(
+                    format="%H:%M %d/%m", 
+                    padding=8, 
+                    foreground=neon_mclaren[1][1],
+                    ),
+
+                widget.KeyboardLayout(
+                    configured_keyboards=['us', 'es'], 
+                    foreground=neon_mclaren[1][2],
+                    font="JetBrainsMono ExtraBold Nerd Font",
+                    fontsize=15,
+                    padding=8
+                    ),
+
+                widget.TextBox(
+                    text="", 
+                    fontsize=18,
+                    foreground="#888888",
+                    padding=8,
+                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl reboot"])}
+                    ),
+
+                widget.TextBox(
+                    text="", 
+                    fontsize=18,
+                    foreground="#888888",
+                    padding=12,
+                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl poweroff"])}
+                    ),
+
+                widget.Sep(
+                    padding=3,
+                    linewidth=0
+                    )
+            ],
+            24,
+            opacity=0.90,
+            background="#000000"
         ),
     )
 ]
