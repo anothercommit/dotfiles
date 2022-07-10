@@ -67,26 +67,28 @@ keys = [
 
     # Run
     Key([mod], "b",
-        lazy.spawn(browser)),
+        lazy.spawn(browser), desc="Opens an internet browser"),
 
     Key([mod], "s", 
-        lazy.spawn(music_service)),
+        lazy.spawn(music_service), desc="Opens setted music player"),
 
     Key([mod], "e",
-        lazy.spawn(terminal + " -e " + file_explorer)),
+        lazy.spawn(terminal + " -e " + file_explorer), desc="Opens settted file explorer"),
 
      Key([mod], "d", 
-        lazy.spawn("discord")),
+        lazy.spawn("discord"), desc="Opens discord"),
 
      Key([mod,  "shift"], "p", 
-        lazy.spawn(terminal+" -e htop")),
+             lazy.spawn(terminal+" -e htop"), desc="Opens htop"),
 
-     Key([mod], "p", lazy.spawn(terminal+" -e nvim /home/joaco/Notas/Palabras\ pendientes\ anki.md")),
+     Key([mod], "a", 
+             lazy.spawn(terminal+" -e nvim /home/joaco/Notas/Palabras\ pendientes\ anki.md"), 
+             desc="Add new words to my anki list"),
 
      Key(["control"], "p", lazy.spawn(terminal + " -e nvim /home/joaco/Notas/passwords.txt")),
 
 
-    # Media Keys
+    # install Playerctl y plaerctld
     # TODO
     # XF86AudioMute
     # XF86AudioNext
@@ -107,16 +109,16 @@ keys = [
     Key(["shift"], "XF86AudioLowerVolume",
         lazy.spawn("amixer sset Master 15%-")),
 
-    Key([], "F9",
+    Key(["shift"], "F12",
         lazy.spawn("brillo -q -A 5")),
 
-    Key([], "F8",
+    Key(["shift"], "F11",
         lazy.spawn("brillo -q -U 5")),
 
-    Key(["shift"], "F9",
+    Key([mod, "shift"], "F12",
              lazy.spawn("brillo -q -A 15")),
 
-    Key(["shift"], "F8",
+    Key([mod, "shift"], "F11",
             lazy.spawn("brillo -q -U 15")),
 
     Key([], "XF86MonBrightnessUp",
@@ -190,21 +192,29 @@ groups = [Group("1", layout='max', label=''),
           Group("3", layout='monadtall', label=''), 
           Group("4", layout='max', label=''),
           Group("5", layout='max', label=''),
-          Group("6", layout='monadtall', label='')]
+          Group("6", layout='floating', label='')]
+
+layout_theme = {"border_width": 1, 
+                "margin": 8,
+                "border_focus": "44a9c6"
+                }
+
 
 layouts = [
-    layout.MonadTall(),
-    layout.Max(),
+    layout.MonadTall(**layout_theme),
+    layout.Max(**layout_theme),
+    layout.Floating(**layout_theme),
 ]
 
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font Bold",
     fontsize=14,
-    padding=6,
+    padding=8,
 )
 extension_defaults = widget_defaults.copy()
 
 screens = [
+    # Notebook
     Screen(
         top=bar.Bar(
             [
@@ -271,24 +281,22 @@ screens = [
                 widget.CheckUpdates(
                     display_format='{updates}',
                     no_update_string='',
-                    update_interval=30,
+                    update_interval=60, 
                     foreground=neon_mclaren[1][5],
                     fontsize=16,
                     mouse_callbacks={"Button1" : lazy.spawn(terminal+" -e topgrade")}
                     ),
 
-
-                widget.TextBox(
-                    text="/", 
-                    fontsize=32,
-                    foreground="#666666",
-                    padding=4
-                    ),
-
                 widget.Clock(
                     format="%H:%M %d/%m", 
-                    padding=8, 
                     foreground=neon_mclaren[1][1],
+                    ),
+
+                widget.TextBox(
+                    text="", 
+                    fontsize=18,
+                    foreground="#888888",
+                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl poweroff"])}
                     ),
 
                 widget.KeyboardLayout(
@@ -296,35 +304,27 @@ screens = [
                     foreground=neon_mclaren[1][2],
                     font="JetBrainsMono ExtraBold Nerd Font",
                     fontsize=15,
-                    padding=8
                     ),
 
-                widget.TextBox(
-                    text="", 
-                    fontsize=18,
-                    foreground="#888888",
-                    padding=8,
-                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl reboot"])}
-                    ),
+                # widget.TextBox(
+                #     text="", 
+                #     fontsize=18,
+                #     foreground="#888888",
+                #     padding=8,
+                #     mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl reboot"])}
+                #     ),
 
-                widget.TextBox(
-                    text="", 
-                    fontsize=18,
-                    foreground="#888888",
-                    padding=12,
-                    mouse_callbacks={'Button1' : lazy.spawn(["sh", "-c", "systemctl poweroff"])}
-                    ),
-
-                widget.Sep(
-                    padding=3,
-                    linewidth=0
-                    )
+                # widget.Sep(
+                #     padding=3,
+                #     linewidth=0
+                #     )
             ],
             24,
             opacity=0.90,
             background="#000000"
         ),
     ),
+    # TV
     Screen(
         top=bar.Bar(
             [
@@ -379,8 +379,6 @@ screens = [
                     padding=4
                     ),
 
-                widget.Systray(),
-
                 widget.TextBox(
                     text="ﮮ", 
                     fontsize=20,
@@ -395,14 +393,6 @@ screens = [
                     foreground=neon_mclaren[1][5],
                     fontsize=16,
                     mouse_callbacks={"Button1" : lazy.spawn(terminal+" -e topgrade")}
-                    ),
-
-
-                widget.TextBox(
-                    text="/", 
-                    fontsize=32,
-                    foreground="#666666",
-                    padding=4
                     ),
 
                 widget.Clock(

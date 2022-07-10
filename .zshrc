@@ -56,4 +56,6 @@ alias du='du -sh'
 alias df='df -h'
 alias n='nvim'
 
+alias chromium="chromium --force-dark-mode --enable-features=WebUIDarkMode"
+
 eval "$(starship init zsh)"
