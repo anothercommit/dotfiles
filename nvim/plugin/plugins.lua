@@ -32,7 +32,12 @@ end
 --}}}
 
 return packer.startup(function(use)
-     
+
+-- TODO 
+--{{{
+-- coq_nvim
+--}}}
+
 use 'wbthomason/packer.nvim'
 
 use 'neovim/nvim-lspconfig'
@@ -48,8 +53,17 @@ use 'L3MON4D3/LuaSnip'
 
 use 'onsails/lspkind.nvim'
 
+use { 
+    "williamboman/nvim-lsp-installer",
+    config = function() require'nvim-lsp-installer'.setup {} end
+}
 
-use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+use {
+    'nvim-treesitter/nvim-treesitter', 
+    run = ':TSUpdate',
+    requires = { { 'p00f/nvim-ts-rainbow' } }
+
+}
 
 -- use {
 --   'glepnir/galaxyline.nvim', branch = 'main',
@@ -78,12 +92,37 @@ use {
 }
 
 use {
+  "AckslD/nvim-neoclip.lua",
+  config = function()
+    require('neoclip').setup()
+  end,
+}
+
+use {
   'nvim-telescope/telescope.nvim',
   requires = { {'nvim-lua/plenary.nvim'} }
 }
 
+-- Lua
+use {
+  "folke/which-key.nvim",
+  config = function()
+    require("which-key").setup {}
+  end
+}
+
+use { "akinsho/toggleterm.nvim", tag = 'v1.*' }
+
+use "lukas-reineke/indent-blankline.nvim"
+
 use 'rust-lang/rust.vim'
 
+use { 
+  'norcalli/nvim-colorizer.lua',
+  config = function()
+    require'colorizer'.setup {}
+  end
+}
 use 'nvim-lualine/lualine.nvim'
 use 'tpope/vim-fugitive'
 use 'junegunn/fzf.vim'
@@ -94,9 +133,8 @@ use "windwp/nvim-autopairs"
 
 -- Themes
 use 'sainnhe/everforest'                                        
-use 'EdenEast/nightfox.nvim'                                    
 use 'dracula/vim'                                               
 use 'sainnhe/sonokai'    
-use 'VDuchauffour/neodark.nvim'
 use 'navarasu/onedark.nvim'
+use "savq/melange"
 end)
