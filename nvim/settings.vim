@@ -1,0 +1,36 @@
+let @l = 'nx'
+let @w = 'ndw'
+
+syntax enable
+set termguicolors
+set filetype=on
+set background=dark
+set mouse=a
+set noshowmode
+set number
+set relativenumber
+set cursorline
+set showmatch
+set hlsearch
+set splitright
+set splitbelow
+" set nowrap
+set smartindent
+set smarttab
+set shiftwidth=4
+set expandtab
+set tabstop=4
+set scrolloff=8
+set foldmethod=marker
+
+let g:onedark_config = {
+    \ 'style': 'cool',
+\}
+
+set background=dark
+colorscheme sonokai
+
+set completeopt=menu,menuone,noselect
+
+" Format on save
+" let g:rustfmt_autosave = 1
