@@ -16,5 +16,9 @@ require'nvim-treesitter.configs'.setup {
     -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     extended_mode = true, 
     max_file_lines = nil, 
+  },
+
+  context_commentstring = {
+    enable = true,
   }
 }

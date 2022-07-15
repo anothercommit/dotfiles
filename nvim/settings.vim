@@ -1,9 +1,9 @@
-let @l = 'nx'
-let @w = 'ndw'
-
 syntax enable
 set termguicolors
+set ignorecase
+set fileencoding=utf-8
 set filetype=on
+set smartcase
 set background=dark
 set mouse=a
 set noshowmode
@@ -14,7 +14,7 @@ set showmatch
 set hlsearch
 set splitright
 set splitbelow
-" set nowrap
+set nowrap
 set smartindent
 set smarttab
 set shiftwidth=4
@@ -22,13 +22,15 @@ set expandtab
 set tabstop=4
 set scrolloff=8
 set foldmethod=marker
+" set timeoutlen=1000
+set updatetime=300
 
 let g:onedark_config = {
     \ 'style': 'cool',
 \}
 
 set background=dark
-colorscheme sonokai
+colorscheme edge
 
 set completeopt=menu,menuone,noselect
 

@@ -23,39 +23,42 @@ mkcd ()
   mkdir -p -- "$1" && cd -P -- "$1"
 }
 
-#rmthis ()
-#{
-#  cd .. && rm -rf -P
-#}
+rmthis ()
+{
+  cd '..' -p && rm -rf -P -- "$1"
+}
 
 # Aliases
 
-alias ..='cd ..'                                               
-alias ...='cd ../..'                                           
-alias pws='bat ~/Notas/passwords.txt'                         
-alias npws='nvim ~/Notas/passwords.txt'                       
-alias todo='bat ~/Notas/TO_DO.md'                           
-alias ntodo='nvim ~/Notas/TO_DO.md'                           
-alias words='bat ~/Notas/Palabras\ pendientes\ anki.md'        
-alias nwords='nvim ~/Notas/Palabras\ pendientes\ anki.md'      
-alias commands='bat ~/Notas/cheatsheets/Commands.md'           
-alias ncommands='nvim ~/Notas/cheatsheets/Commands.md'         
+alias ..='cd ..'
+alias ...='cd ../..'
+alias pws='bat ~/Notas/passwords.txt'
+alias npws='nvim ~/Notas/passwords.txt'
+alias todo='bat ~/Notas/TO_DO.md'
+alias ntodo='nvim ~/Notas/TO_DO.md'
+alias words='bat ~/Notas/Palabras\ pendientes\ anki.md'
+alias nwords='nvim ~/Notas/Palabras\ pendientes\ anki.md'
+alias commands='bat ~/Notas/cheatsheets/Commands.md'
+alias ncommands='nvim ~/Notas/cheatsheets/Commands.md'
 alias zshconf='nvim ~/.zshrc'                
+alias zshsource='source ~/.zshrc'                
 
-alias l='exa'                                                  
-alias la='exa -a'                                              
-alias ll='exa -al'                                             
-alias lt='exa -T'                                              
-alias llt='exa -alT'                                           
+alias l='exa'
+alias la='exa -a'
+alias ll='exa -al'
+alias lt='exa -T'
+alias llt='exa -alT'
 
-alias icat='kitty +kitten icat'                                
-alias p='sudo pacman'                                          
-alias sp='sudo pacman'                                          
-alias code='codium'                                            
-alias du='du -sh'                                              
+alias icat='kitty +kitten icat'
+alias p='sudo pacman'
+alias sp='sudo pacman'
+alias code='codium'
+alias du='du -sh'
 alias df='df -h'
 alias n='nvim'
+alias rust-book='chromium ~/repos/rust-book-es/second-edition/en/book/index.html'
 
 alias chromium="chromium --force-dark-mode --enable-features=WebUIDarkMode"
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

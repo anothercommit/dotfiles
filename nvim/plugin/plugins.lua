@@ -2,17 +2,17 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
 	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
+		'git',
+		'clone',
+		'--depth',
+		'1',
+		'https://github.com/wbthomason/packer.nvim',
 		install_path,
 	})
-	print("Installing packer close and reopen Neovim...")
+	print('Installing packer close and reopen Neovim...')
 	vim.cmd([[packadd packer.nvim]])
 end
 
@@ -25,7 +25,7 @@ vim.cmd([[
 ]])
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
 	return
 end
@@ -41,7 +41,6 @@ return packer.startup(function(use)
 use 'wbthomason/packer.nvim'
 
 use 'neovim/nvim-lspconfig'
-
 use 'hrsh7th/nvim-cmp'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/cmp-path'
@@ -53,8 +52,12 @@ use 'L3MON4D3/LuaSnip'
 
 use 'onsails/lspkind.nvim'
 
+use 'mfussenegger/nvim-dap'
+use 'rcarriga/nvim-dap-ui'
+use 'ravenxrz/DAPInstall.nvim'
+
 use { 
-    "williamboman/nvim-lsp-installer",
+    'williamboman/nvim-lsp-installer',
     config = function() require'nvim-lsp-installer'.setup {} end
 }
 
@@ -71,7 +74,7 @@ use {
 -- }
 
 use {
-    "kyazdani42/nvim-web-devicons", 
+    'kyazdani42/nvim-web-devicons', 
     config = function() require'nvim-web-devicons'.setup {} end
 }
 
@@ -81,8 +84,8 @@ use {
 }
 
 use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn['mkdp#util#install']() end
 })
 
 
@@ -92,11 +95,14 @@ use {
 }
 
 use {
-  "AckslD/nvim-neoclip.lua",
+  'AckslD/nvim-neoclip.lua',
   config = function()
     require('neoclip').setup()
+    require('telescope').load_extension('neoclip')
   end,
 }
+
+
 
 use {
   'nvim-telescope/telescope.nvim',
@@ -105,15 +111,15 @@ use {
 
 -- Lua
 use {
-  "folke/which-key.nvim",
-  config = function()
-    require("which-key").setup {}
-  end
+  'folke/which-key.nvim',
+  -- config = function()
+  --   require('which-key').setup {}
+  -- end
 }
 
-use { "akinsho/toggleterm.nvim", tag = 'v1.*' }
+use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
 
-use "lukas-reineke/indent-blankline.nvim"
+use 'lukas-reineke/indent-blankline.nvim'
 
 use 'rust-lang/rust.vim'
 
@@ -123,18 +129,30 @@ use {
     require'colorizer'.setup {}
   end
 }
+
+use { 
+  'phaazon/hop.nvim',
+  config = function()
+    require'hop'.setup()
+  end
+}
+
 use 'nvim-lualine/lualine.nvim'
+use 'JoosepAlviste/nvim-ts-context-commentstring'
 use 'tpope/vim-fugitive'
 use 'junegunn/fzf.vim'
-use 'phaazon/hop.nvim'
 use 'kyazdani42/nvim-tree.lua'
+use 'tpope/vim-repeat'
 use 'kshenoy/vim-signature'
-use "windwp/nvim-autopairs"
+use 'windwp/nvim-autopairs'
 
 -- Themes
 use 'sainnhe/everforest'                                        
 use 'dracula/vim'                                               
 use 'sainnhe/sonokai'    
 use 'navarasu/onedark.nvim'
-use "savq/melange"
+use 'savq/melange'
+use 'tanvirtin/monokai.nvim'
+use 'rebelot/kanagawa.nvim'
+use 'sainnhe/edge'
 end)
