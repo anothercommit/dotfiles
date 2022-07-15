@@ -21,15 +21,14 @@ modifier_keys = {
    'C': 'control',
 }
 
-
+# keybindings {{{
 keys = [
 
+# Basic keybindings {{{
     Key([mod], "Return",
         lazy.spawn(terminal), 
         desc="Launch terminal"),
 
-
-    # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -60,12 +59,30 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod,"control", "shift"], "r",
             lazy.spawn(["sh", "-c", "sudo reboot now"])),
-    
+
+    Key(["control"], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+
+    Key([mod], "m",
+        lazy.layout.maximize(),
+        desc='toggle window between minimum and maximum sizes'
+        ),
+     
+    Key([mod, "shift"], "f",
+        lazy.window.toggle_floating(),
+        desc='toggle floating'
+        ),
+
+    EzKey("M-f",
+        lazy.window.toggle_fullscreen(),
+        desc='toggle fullscreen'
+        ),
+# }}}
+
+# Run {{{
     Key([mod, "shift"], "space",
         lazy.spawn("rofi -show drun")
     ),
 
-    # Run
     Key([mod], "b",
         lazy.spawn(browser), desc="Opens an internet browser"),
 
@@ -75,25 +92,21 @@ keys = [
     Key([mod], "e",
         lazy.spawn(terminal + " -e " + file_explorer), desc="Opens settted file explorer"),
 
-     Key([mod], "d", 
+    Key([mod], "d", 
         lazy.spawn("discord"), desc="Opens discord"),
 
-     Key([mod,  "shift"], "p", 
-             lazy.spawn(terminal+" -e htop"), desc="Opens htop"),
+    Key([mod,  "shift"], "p", 
+         lazy.spawn(terminal+" -e htop"), desc="Opens htop"),
 
-     Key([mod], "a", 
-             lazy.spawn(terminal+" -e nvim /home/joaco/Notas/Palabras\ pendientes\ anki.md"), 
-             desc="Add new words to my anki list"),
+    Key([mod], "a", 
+         lazy.spawn(terminal+" -e nvim /home/joaco/Notas/Palabras\ pendientes\ anki.md"), 
+         desc="Add new words to my anki list"),
 
-     Key(["control"], "p", lazy.spawn(terminal + " -e nvim /home/joaco/Notas/passwords.txt")),
+    Key([mod], "p", lazy.spawn(terminal + " -e nvim /home/joaco/Notas/passwords.txt")),
 
+# }}}
 
-    # install Playerctl y plaerctld
-    # TODO
-    # XF86AudioMute
-    # XF86AudioNext
-    # XF86AudioPrev
-
+# Audio {{{
     Key([], "XF86AudioMute",
         lazy.spawn("amixer sset Master toggle")),
 
@@ -109,6 +122,17 @@ keys = [
     Key(["shift"], "XF86AudioLowerVolume",
         lazy.spawn("amixer sset Master 15%-")),
 
+    Key([], "XF86AudioPlay",
+        lazy.spawn("playerctl play-pause")),
+
+    Key([], "XF86AudioPrev",
+        lazy.spawn("playerctl previous")),
+
+    Key([], "XF86AudioNext",
+        lazy.spawn("playerctl next")),
+# }}}
+
+# Brightness {{{
     Key(["shift"], "F12",
         lazy.spawn("brillo -q -A 5")),
 
@@ -132,7 +156,9 @@ keys = [
 
     Key(["shift"], "XF86MonBrightnessDown",
             lazy.spawn("brillo -q -U 15")),
+# }}}
 
+# Screenshot {{{
     Key([], "Print",
             lazy.spawn(["sh", "-c", "maim | xclip -selection clipboard -t image/png"])),
 
@@ -144,28 +170,9 @@ keys = [
 
     Key([mod, "shift"], "Print",
             lazy.spawn(["sh", "-c", "maim -s ~/Media/Pictures/$(date +%s).jpg"])),
-
-
-    # Change Keyboard Layout 
-    Key(["control"], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
-
-
-    # Windows
-    Key([mod], "m",
-        lazy.layout.maximize(),
-        desc='toggle window between minimum and maximum sizes'
-        ),
-     
-    Key([mod, "shift"], "f",
-        lazy.window.toggle_floating(),
-        desc='toggle floating'
-        ),
-
-    EzKey("M-f",
-        lazy.window.toggle_fullscreen(),
-        desc='toggle fullscreen'
-        )
+# }}}
 ]
+# }}}
 
 groups = [Group(i) for i in "123456789"]
 
@@ -194,10 +201,11 @@ groups = [Group("1", layout='max', label=''),
           Group("5", layout='max', label=''),
           Group("6", layout='floating', label='')]
 
-layout_theme = {"border_width": 1, 
-                "margin": 8,
-                "border_focus": "44a9c6"
-                }
+layout_theme = {
+        "border_width": 1, 
+        "margin": 8,
+        "border_focus": "44a9c6"
+        }
 
 
 layouts = [
@@ -214,7 +222,7 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    # Notebook
+# Notebook {{{
     Screen(
         top=bar.Bar(
             [
@@ -281,7 +289,6 @@ screens = [
                 widget.CheckUpdates(
                     display_format='{updates}',
                     no_update_string='',
-                    update_interval=60, 
                     foreground=neon_mclaren[1][5],
                     fontsize=16,
                     mouse_callbacks={"Button1" : lazy.spawn(terminal+" -e topgrade")}
@@ -324,7 +331,9 @@ screens = [
             background="#000000"
         ),
     ),
-    # TV
+    # }}}
+
+# TV {{{
     Screen(
         top=bar.Bar(
             [
@@ -371,6 +380,13 @@ screens = [
                 widget.Volume(
                     foreground="#ffffff"
                     ),
+
+                # widget.Wlan(
+                #     format='{essid} {2.0%}',
+                #     disconnected_message='睊',
+                #     interface='wlp2s0',
+                #     mouse_callbacks={"Button1": lazy.spawn(terminal+" -e nmcli d wifi list")}
+                #     ),
 
                 widget.TextBox(
                     text="/", 
@@ -435,6 +451,7 @@ screens = [
             background="#000000"
         ),
     )
+# }}}
 ]
 
 # Drag floating layouts.
@@ -473,12 +490,4 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
 wmname = "LG3D"
