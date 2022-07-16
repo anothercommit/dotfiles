@@ -83,6 +83,12 @@ keys = [
         lazy.spawn("rofi -show drun")
     ),
 
+    Key([mod], "v", 
+        lazy.spawn("copyq menu")),
+
+    Key([mod, "shift"], "v", 
+        lazy.spawn("copyq toggle")),
+
     Key([mod], "b",
         lazy.spawn(browser), desc="Opens an internet browser"),
 
