@@ -36,6 +36,8 @@ return packer.startup(function(use)
 -- TODO 
 --{{{
 -- coq_nvim
+-- galaxyline
+-- dap para rust
 --}}}
 
 use 'wbthomason/packer.nvim'
@@ -65,13 +67,7 @@ use {
     'nvim-treesitter/nvim-treesitter', 
     run = ':TSUpdate',
     requires = { { 'p00f/nvim-ts-rainbow' } }
-
 }
-
--- use {
---   'glepnir/galaxyline.nvim', branch = 'main',
---   config = function() require('galaxyline') end
--- }
 
 use {
     'kyazdani42/nvim-web-devicons', 
@@ -103,7 +99,6 @@ use {
 }
 
 
-
 use {
   'nvim-telescope/telescope.nvim',
   requires = { {'nvim-lua/plenary.nvim'} }
@@ -112,9 +107,9 @@ use {
 -- Lua
 use {
   'folke/which-key.nvim',
-  -- config = function()
-  --   require('which-key').setup {}
-  -- end
+  config = function()
+    require('which-key').setup {}
+  end
 }
 
 use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
@@ -147,12 +142,13 @@ use 'kshenoy/vim-signature'
 use 'windwp/nvim-autopairs'
 
 -- Themes
-use 'sainnhe/everforest'                                        
-use 'dracula/vim'                                               
-use 'sainnhe/sonokai'    
+use 'sainnhe/everforest'
+use 'dracula/vim'
+use 'sainnhe/sonokai'
 use 'navarasu/onedark.nvim'
 use 'savq/melange'
 use 'tanvirtin/monokai.nvim'
 use 'rebelot/kanagawa.nvim'
 use 'sainnhe/edge'
+use 'ellisonleao/gruvbox.nvim'
 end)

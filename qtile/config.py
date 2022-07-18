@@ -2,7 +2,7 @@ import os
 import subprocess
 from libqtile import hook
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, EzKey, KeyChord, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -12,14 +12,8 @@ from colors import *
 music_service = "spotify-launcher"
 browser = "chromium --chromium --force-dark-mode --enable-features=WebUIDarkMode"
 file_explorer = "lf"
-terminal = "kitty"
+terminal = "alacritty"
 mod = "mod4"
-modifier_keys = {
-   'M': 'mod4',
-   'A': 'mod1',
-   'S': 'shift',
-   'C': 'control',
-}
 
 # keybindings {{{
 keys = [
@@ -72,7 +66,7 @@ keys = [
         desc='toggle floating'
         ),
 
-    EzKey("M-f",
+    Key([mod], "f",
         lazy.window.toggle_fullscreen(),
         desc='toggle fullscreen'
         ),
@@ -96,7 +90,7 @@ keys = [
         lazy.spawn(music_service), desc="Opens setted music player"),
 
     Key([mod], "e",
-        lazy.spawn(terminal + " -e " + file_explorer), desc="Opens settted file explorer"),
+        lazy.spawn(terminal + " -e " + file_explorer + "cd"), desc="Opens settted file explorer"),
 
     Key([mod], "d", 
         lazy.spawn("discord"), desc="Opens discord"),

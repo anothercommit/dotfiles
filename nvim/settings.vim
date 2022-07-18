@@ -30,7 +30,7 @@ let g:onedark_config = {
 \}
 
 set background=dark
-colorscheme edge
+colorscheme gruvbox
 
 set completeopt=menu,menuone,noselect
 

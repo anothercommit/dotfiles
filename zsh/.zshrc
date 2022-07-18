@@ -5,6 +5,16 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export LANG=es_AR.UTF-8
 
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.cache/zsh/history
+
+autoload -U compinit
+zstyle '*:completion*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
 else
@@ -15,9 +25,9 @@ export PATH="/home/joaco/.local/bin:$PATH"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+#
 
-#Functions
-
+# Functions {{{
 mkcd ()
 {
   mkdir -p -- "$1" && cd -P -- "$1"
@@ -28,8 +38,22 @@ rmthis ()
   cd '..' -p && rm -rf -P -- "$1"
 }
 
-# Aliases
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'lfcd\n'
+# }}}
 
+# {{{
+# }}}
+
+# Aliases {{{
 alias ..='cd ..'
 alias ...='cd ../..'
 alias pws='bat ~/Notas/passwords.txt'
@@ -40,8 +64,8 @@ alias words='bat ~/Notas/Palabras\ pendientes\ anki.md'
 alias nwords='nvim ~/Notas/Palabras\ pendientes\ anki.md'
 alias commands='bat ~/Notas/cheatsheets/Commands.md'
 alias ncommands='nvim ~/Notas/cheatsheets/Commands.md'
-alias zshconf='nvim ~/.zshrc'                
-alias zshsource='source ~/.zshrc'                
+alias zshconf='nvim ~/.config/zsh/.zshrc'
+alias zshsource='source ~/.config/zsh/.zshrc'
 
 alias l='exa'
 alias la='exa -a'
@@ -59,6 +83,9 @@ alias n='nvim'
 alias rust-book='chromium ~/repos/rust-book-es/second-edition/en/book/index.html'
 
 alias chromium="chromium --force-dark-mode --enable-features=WebUIDarkMode"
+# }}}
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+pfetch
