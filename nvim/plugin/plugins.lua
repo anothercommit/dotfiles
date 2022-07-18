@@ -31,32 +31,34 @@ if not status_ok then
 end
 --}}}
 
-return packer.startup(function(use)
-
--- TODO 
---{{{
+-- TODO
 -- coq_nvim
 -- galaxyline
 -- dap para rust
---}}}
+
+return packer.startup(function(use)
 
 use 'wbthomason/packer.nvim'
-
+--
+-- Lenguage related {{{
 use 'neovim/nvim-lspconfig'
+
 use 'hrsh7th/nvim-cmp'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/cmp-path'
 use 'hrsh7th/cmp-nvim-lua'
 use 'hrsh7th/cmp-nvim-lsp'
 
+use 'onsails/lspkind.nvim'
+
 use 'saadparwaiz1/cmp_luasnip'
 use 'L3MON4D3/LuaSnip'
-
-use 'onsails/lspkind.nvim'
 
 use 'mfussenegger/nvim-dap'
 use 'rcarriga/nvim-dap-ui'
 use 'ravenxrz/DAPInstall.nvim'
+
+use 'rust-lang/rust.vim'
 
 use { 
     'williamboman/nvim-lsp-installer',
@@ -68,26 +70,34 @@ use {
     run = ':TSUpdate',
     requires = { { 'p00f/nvim-ts-rainbow' } }
 }
+-- }}}
 
+-- Sruff {{{
 use {
-    'kyazdani42/nvim-web-devicons', 
-    config = function() require'nvim-web-devicons'.setup {} end
+  'numToStr/Comment.nvim',
+  config = function() require'Comment'.setup() end,
+  requires = { { 'JoosepAlviste/nvim-ts-context-commentstring' } }
 }
 
 use {
-    'junegunn/goyo.vim',
-    requires = 'junegunn/limelight.vim'
+  'folke/which-key.nvim',
+  config = function()
+    require('which-key').setup {}
+  end
 }
 
-use({
-    'iamcco/markdown-preview.nvim',
-    run = function() vim.fn['mkdp#util#install']() end
-})
+use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
 
+use { 
+  'phaazon/hop.nvim',
+  config = function()
+    require'hop'.setup()
+  end
+}
 
 use {
-    'numToStr/Comment.nvim',
-    config = function() require'Comment'.setup() end
+  'nvim-telescope/telescope.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} }
 }
 
 use {
@@ -98,48 +108,40 @@ use {
   end,
 }
 
+use 'junegunn/fzf.vim'
+use 'kyazdani42/nvim-tree.lua'
+
+use({
+  'iamcco/markdown-preview.nvim',
+  run = function() vim.fn['mkdp#util#install']() end
+})
 
 use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
+  'junegunn/goyo.vim',
+  requires = 'junegunn/limelight.vim'
 }
 
--- Lua
+use 'tpope/vim-fugitive'
+use 'windwp/nvim-autopairs'
+use 'tpope/vim-repeat'
+-- }}}
+
+-- Aesthetic {{{
 use {
-  'folke/which-key.nvim',
-  config = function()
-    require('which-key').setup {}
-  end
+    'kyazdani42/nvim-web-devicons', 
+    config = function() require'nvim-web-devicons'.setup {} end
 }
-
-use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
-
-use 'lukas-reineke/indent-blankline.nvim'
-
-use 'rust-lang/rust.vim'
 
 use { 
   'norcalli/nvim-colorizer.lua',
   config = function()
-    require'colorizer'.setup {}
+    require'colorizer'.setup()
   end
 }
 
-use { 
-  'phaazon/hop.nvim',
-  config = function()
-    require'hop'.setup()
-  end
-}
-
-use 'nvim-lualine/lualine.nvim'
-use 'JoosepAlviste/nvim-ts-context-commentstring'
-use 'tpope/vim-fugitive'
-use 'junegunn/fzf.vim'
-use 'kyazdani42/nvim-tree.lua'
-use 'tpope/vim-repeat'
+use 'lukas-reineke/indent-blankline.nvim'
 use 'kshenoy/vim-signature'
-use 'windwp/nvim-autopairs'
+use 'nvim-lualine/lualine.nvim'
 
 -- Themes
 use 'sainnhe/everforest'
@@ -151,4 +153,5 @@ use 'tanvirtin/monokai.nvim'
 use 'rebelot/kanagawa.nvim'
 use 'sainnhe/edge'
 use 'ellisonleao/gruvbox.nvim'
+-- }}}
 end)
