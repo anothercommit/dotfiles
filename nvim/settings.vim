@@ -1,4 +1,5 @@
 syntax enable
+set signcolumn=yes
 set termguicolors
 set ignorecase
 set fileencoding=utf-8

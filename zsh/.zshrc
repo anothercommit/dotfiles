@@ -25,7 +25,6 @@ export PATH="/home/joaco/.local/bin:$PATH"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-#
 
 # Functions {{{
 mkcd ()
@@ -83,9 +82,12 @@ alias n='nvim'
 alias rust-book='chromium ~/repos/rust-book-es/second-edition/en/book/index.html'
 
 alias chromium="chromium --force-dark-mode --enable-features=WebUIDarkMode"
+alias keysoup="sudo systemctl restart keyd"
 # }}}
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 pfetch
+
+alias luamake=/home/joaco/repos/lua-language-server/3rd/luamake/luamake

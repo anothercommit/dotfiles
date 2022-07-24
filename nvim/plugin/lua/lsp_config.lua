@@ -1,34 +1,51 @@
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lspkind = require('lspkind')
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
--- TODO: 
--- * Make an array of installed lenguages
-require'lspconfig'.bashls.setup{}
+
+local lspkind = require('lspkind')
+local nvim_lsp = require'lspconfig'
+local cmp = require'cmp'
+
+
+require'lspconfig'.bashls.setup{
+    capabilities = capabilities,
+    on_attach = function()
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+        vim.keymap.set("n", "<Leader>dj", vim.diagnostic.goto_next, bufopts)
+        vim.keymap.set("n", "<Leader>dk", vim.diagnostic.goto_prev, bufopts)
+        vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", bufopts)
+        vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set("n", "<Leader>cf", vim.lsp.buf.formatting, bufopts)
+    end,
+}
 
 require'lspconfig'.rust_analyzer.setup
 {
     capabilities = capabilities,
     on_attach = function()
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-        vim.keymap.set("n", "<Leader>dj", vim.diagnostic.goto_next, {buffer=0})
-        vim.keymap.set("n", "<Leader>dk", vim.diagnostic.goto_prev, {buffer=0})
-        vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
-        vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
-    end,        
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+        vim.keymap.set("n", "<Leader>dj", vim.diagnostic.goto_next, bufopts)
+        vim.keymap.set("n", "<Leader>dk", vim.diagnostic.goto_prev, bufopts)
+        vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", bufopts)
+        vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set("n", "<Leader>a", vim.lsp.buf.formatting, bufopts)
+    end,
 }
-local cmp = require'cmp'
 
-cmp.setup({
+-- require'lspconfig'.sumneko_lua.setup
+-- {
+--     capabilities = capabilities,
+--     on_attach = lsp_on_attach,
+-- }
 
-snippet = {
-  expand = function(args)
-    require('luasnip').lsp_expand(args.body)
-  end,
-},
-
--- lsp_kind icons {{{
 -- local kind_icons = {
 -- 	Text = "",
 -- 	Method = "",
@@ -55,8 +72,7 @@ snippet = {
 -- 	Event = "",
 -- 	Operator = "",
 -- 	TypeParameter = "",
--- },
--- }}}
+-- }
 
 formatting = {
     format = lspkind.cmp_format({
@@ -72,7 +88,15 @@ formatting = {
       before = function (entry, vim_item)
         return vim_item
       end
-    })
+    }),
+}
+
+cmp.setup({
+
+snippet = {
+  expand = function(args)
+    require('luasnip').lsp_expand(args.body)
+  end,
 },
 
 experimental = {
@@ -80,8 +104,8 @@ experimental = {
 },
 
 window = {
-  -- completion = cmp.config.window.bordered(),
-  -- documentation = cmp.config.window.bordered(),
+  completion = cmp.config.window.bordered(),
+  documentation = cmp.config.window.bordered(),
 },
 
 mapping = cmp.mapping.preset.insert({

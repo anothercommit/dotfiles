@@ -1,3 +1,4 @@
+# Imports {{{
 import os
 import subprocess
 from libqtile import hook
@@ -8,12 +9,14 @@ from libqtile.utils import guess_terminal
 
 # My files 
 from colors import *
+# }}}
 
 music_service = "spotify-launcher"
 browser = "chromium --chromium --force-dark-mode --enable-features=WebUIDarkMode"
 file_explorer = "lf"
 terminal = "alacritty"
 mod = "mod4"
+alt = "mod1"
 
 # keybindings {{{
 keys = [
@@ -47,6 +50,7 @@ keys = [
         ),
 
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod, "shift"], "Tab", lazy.prev_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -72,37 +76,86 @@ keys = [
         ),
 # }}}
 
-# Run {{{
-    Key([mod, "shift"], "space",
+# Run / Launch {{{
+    # Programs and apps
+    Key([alt, "shift"], "space",
         lazy.spawn("rofi -show drun")
     ),
 
+    Key([alt, "shift"], "e",
+        lazy.spawn("rofi -show emoji")
+    ),
+
+    Key([alt, "shift"], "c",
+        lazy.spawn("rofi -show calc")
+    ),
+
+    Key([alt, "shift"], "b",
+        lazy.spawn(browser), 
+        desc="Opens an internet browser"
+    ),
+
+    Key([alt, "shift"], "s", 
+        lazy.spawn(music_service),
+        desc="Opens setted music player"
+    ),
+
+    Key([alt, "shift"], "d", 
+        lazy.spawn("discord"), 
+        desc="Opens discord"
+    ),
+
+    Key([alt, "shift"], "w", 
+        lazy.spawn("whatsdesk"), 
+        desc="Opens whatsapp"
+    ),
+
+    Key([alt, "shift"], "a", 
+        lazy.spawn(terminal+" -e nvim /home/joaco/Notas/Palabras\ pendientes\ anki.md"), 
+        desc="Words list for anki"
+    ),
+
+    Key([alt, "shift"], "p",
+        lazy.spawn(terminal + " -e nvim /home/joaco/Notas/passwords.txt")
+    ),
+
     Key([mod], "v", 
-        lazy.spawn("copyq menu")),
+        lazy.spawn("copyq menu")
+    ),
 
     Key([mod, "shift"], "v", 
-        lazy.spawn("copyq toggle")),
+        lazy.spawn("copyq toggle")
+    ),
 
-    Key([mod], "b",
-        lazy.spawn(browser), desc="Opens an internet browser"),
+    Key([mod], "p", 
+        lazy.spawn(terminal+" -e htop"),
+        desc="Opens a system monitor"
+    ),
 
-    Key([mod], "s", 
-        lazy.spawn(music_service), desc="Opens setted music player"),
+    KeyChord([alt, "control"], "c",
+        [
+            Key([], "c", 
+                lazy.spawn(terminal + " -e nvim /home/joaco/.config/"),
+            ),
 
-    Key([mod], "e",
-        lazy.spawn(terminal + " -e " + file_explorer + "cd"), desc="Opens settted file explorer"),
+            Key([], "q", 
+                lazy.spawn(terminal + " -e nvim /home/joaco/.config/qtile/config.py"),
+            ),
+            
+            Key([], "n", 
+                lazy.spawn(terminal + " -e nvim /home/joaco/.config/nvim/"),
+            ),
 
-    Key([mod], "d", 
-        lazy.spawn("discord"), desc="Opens discord"),
+            Key([], "a", 
+                lazy.spawn(terminal + " -e nvim /home/joaco/.config/alacritty/alacritty.yml"),
+            ),
 
-    Key([mod,  "shift"], "p", 
-         lazy.spawn(terminal+" -e htop"), desc="Opens htop"),
+            Key([], "a", 
+                lazy.spawn(terminal + " -e nvim /home/joaco/.config/kitty/kitty.conf"),
+            ),
+        ]
+    ),
 
-    Key([mod], "a", 
-         lazy.spawn(terminal+" -e nvim /home/joaco/Notas/Palabras\ pendientes\ anki.md"), 
-         desc="Add new words to my anki list"),
-
-    Key([mod], "p", lazy.spawn(terminal + " -e nvim /home/joaco/Notas/passwords.txt")),
 
 # }}}
 
@@ -174,6 +227,7 @@ keys = [
 ]
 # }}}
 
+# Groups and Layaouts {{{
 groups = [Group(i) for i in "123456789"]
 
 for i in groups:
@@ -203,8 +257,8 @@ groups = [Group("1", layout='max', label=''),
 
 layout_theme = {
         "border_width": 1, 
-        "margin": 8,
-        "border_focus": "44a9c6"
+        "margin": 10,
+        "border_focus": "C8C8C8"
         }
 
 
@@ -213,10 +267,11 @@ layouts = [
     layout.Max(**layout_theme),
     layout.Floating(**layout_theme),
 ]
+# }}}
 
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font Bold",
-    fontsize=14,
+    fontsize=12,
     padding=8,
 )
 extension_defaults = widget_defaults.copy()
@@ -327,7 +382,7 @@ screens = [
                 #     )
             ],
             24,
-            opacity=0.90,
+            opacity=0.85,
             background="#000000"
         ),
     ),
@@ -399,6 +454,7 @@ screens = [
                     text="ﮮ", 
                     fontsize=20,
                     foreground=neon_mclaren[0][2],
+                    mouse_callbacks={"Button1" : lazy.spawn(terminal+" -e topgrade")},
                     padding=4
                     ),
 
@@ -447,7 +503,7 @@ screens = [
                     )
             ],
             24,
-            opacity=0.90,
+            opacity=0.85,
             background="#000000"
         ),
     )

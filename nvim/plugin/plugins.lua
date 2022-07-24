@@ -59,6 +59,7 @@ use 'rcarriga/nvim-dap-ui'
 use 'ravenxrz/DAPInstall.nvim'
 
 use 'rust-lang/rust.vim'
+use 'simrat39/rust-tools.nvim'
 
 use { 
     'williamboman/nvim-lsp-installer',
@@ -81,9 +82,9 @@ use {
 
 use {
   'folke/which-key.nvim',
-  config = function()
-    require('which-key').setup {}
-  end
+  -- config = function()
+  --   require('which-key').setup {}
+  -- end
 }
 
 use { 'akinsho/toggleterm.nvim', tag = 'v1.*' }
@@ -131,6 +132,8 @@ use {
     'kyazdani42/nvim-web-devicons', 
     config = function() require'nvim-web-devicons'.setup {} end
 }
+
+use 'nvim-lua/popup.nvim'
 
 use { 
   'norcalli/nvim-colorizer.lua',

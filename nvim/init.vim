@@ -10,6 +10,7 @@ let $LUA = '~/.config/nvim/plugin/lua'
 
 autocmd BufEnter * silent! lcd %:p:h
 
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 lua << EOF
 require('packer').startup()
