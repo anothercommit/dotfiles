@@ -1,7 +1,3 @@
-" source ~/.config/nvim/keymaps.vim
-source ~/.config/nvim/keymaps.lua
-source ~/.config/nvim/settings.vim
-
 let $KEYMAPS = '~/.config/nvim/keymaps.lua'
 let $SETTINGS = '~/.config/nvim/settings.vim'
 let $PLUGINS = '~/.config/nvim/plugin/plugins.lua'

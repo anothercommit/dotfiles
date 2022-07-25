@@ -11,15 +11,7 @@ local dap = require('dap')
 --   name = 'lldb'
 -- }
 dap.configurations.rust= {
-  {
-    type = 'rust';
-    request = 'launch';
-    name = "Launch file";
-    program = "${file}";
-    pythonPath = function()
-      return '/home/joaco/.local/bin/rust-analyzer'
-    end;
-  },
+
 }
 
 require'dapui'.setup{}
