@@ -22,4 +22,5 @@ qtile/__pycache__/
 !betterlockscreenrc
 !starship.toml
 
+!.gitmodules
 !.gitignore
