@@ -1,12 +1,7 @@
 /*
 
-# NvChad
-!/nvim/
-/nvim/.git/
-/nvim/*
-!/nvim/lua/
-/nvim/lua/*
-!/nvim/lua/custom/
+# NvChad maldito
+!custom.copy/
 
 !qtile/
 qtile/__pycache__/
