@@ -1,0 +1,23 @@
+*
+
+!.gitignore
+
+# NvChad
+# !nvim/
+# nvim/*
+# !nvim/lua/
+# nvim/lua/*
+# !nvim/lua/custom/
+
+# !qtile/
+# qtile/__pycache__/
+
+!awesome/
+!alacritty/
+!kitty/
+!zathura/
+!zsh/
+!rofi/
+!dunst/
+!betterlockscreenrc
+!starship.toml
