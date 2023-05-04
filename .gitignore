@@ -1,12 +1,12 @@
 /*
 
 # NvChad
-!nvim/
+!/nvim/
 /nvim/.git/
-nvim/*
-!nvim/lua/
-nvim/lua/*
-!nvim/lua/custom/
+/nvim/*
+!/nvim/lua/
+/nvim/lua/*
+!/nvim/lua/custom/
 
 !qtile/
 qtile/__pycache__/
