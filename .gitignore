@@ -1,11 +1,13 @@
 /*
 
-# # NvChad
-# !nvim/
-# nvim/*
-# !nvim/lua/
-# nvim/lua/*
-# !nvim/lua/custom/
+# NvChad
+!nvim/
+/nvim/*
+/nvim/.*
+!nvim/lua/
+/nvim/lua/*
+/nvim/lua/.*
+!nvim/lua/custom/
 
 !qtile/
 qtile/__pycache__/
