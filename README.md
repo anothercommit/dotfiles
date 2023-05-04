@@ -1,3 +1,0 @@
-# .config
-
-la papa

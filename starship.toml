@@ -1,0 +1,41 @@
+# ~/.config/starship.toml
+add_newline = false
+command_timeout = 1000000000000000000
+
+format = '''
+  $username$directory$git_branch$git_commit$git_state$git_metrics$git_status
+ $character '''
+
+# format = """
+# $username\
+# $hostname\
+# $shlvl\
+# $singularity\
+# $kubernetes\
+# $directory\
+# $vcsh\
+# $git_branch\
+# $git_commit\
+# $git_state\
+# $git_metrics\
+# $git_status\
+# $hg_branch\
+# $buf\
+# $custom\
+# $sudo\
+# $cmd_duration\
+# $line_break\
+# $jobs\
+# $battery\
+# $status\
+# $character"""
+
+[line_break]
+disabled = true
+
+[cmd_duration]
+min_time = 15_000  
+format = " took [$duration]($style) "
+
+[git_branch]
+format = "[($symbol$branch(:$remote_branch))]($style) "
