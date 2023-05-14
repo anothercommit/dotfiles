@@ -56,6 +56,8 @@ beautiful.init("/home/joaco/.config/awesome/theme.lua")
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
+browser = "chromium --chromium --force-dark-mode --enable-features=WebUIDarkMode"
+calculadora = "qalculate-gtk"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -63,6 +65,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+alt = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -86,7 +89,7 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Menu
--- Create a launcher widget and a main menu
+-- Create a run widget and a main menu
 myawesomemenu = {
     { "hotkeys",     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     { "manual",      terminal .. " -e man awesome" },
@@ -103,7 +106,7 @@ mymainmenu = awful.menu({
 
 praisewidget = wibox.widget.textbox()
 praisewidget.text = "You are great!"
-mylauncher = awful.widget.launcher({
+myrun = awful.widget.launcher({
     image = beautiful.awesome_icon,
     menu = mymainmenu
 })
@@ -214,7 +217,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            myrun,
             -- praisewidget,
             s.mytaglist,
             s.mypromptbox,
@@ -288,7 +291,7 @@ globalkeys = gears.table.join(
 
     -- Standard program
     awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
-        { description = "open a terminal", group = "launcher" }),
+        { description = "open a terminal", group = "run" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
@@ -324,7 +327,7 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-        { description = "run prompt", group = "launcher" }),
+        { description = "run prompt", group = "run" }),
 
     awful.key({ modkey }, "x",
         function()
@@ -336,15 +339,71 @@ globalkeys = gears.table.join(
             }
         end,
         { description = "lua execute prompt", group = "awesome" }),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-        { description = "show the menubar", group = "launcher" }),
+        { description = "show the menubar", group = "run" }),
+
+    -- Abrir
     awful.key({ "Control" }, "space", function() awful.spawn("rofi -show drun") end,
-        { description = "show the menubar", group = "launcher" }),
-    awful.key({ modkey }, "v", function() awful.spawn("copyq show") end,
-        { description = "show the menubar", group = "launcher" }),
-    awful.key({ modkey, "shift" }, "space", function() awful.spawn("copyq menu") end,
-        { description = "show the menubar", group = "launcher" })
+        { description = "Abre rofi", group = "abrir" }),
+    awful.key({ modkey }, "v", function() awful.spawn("copyq menu") end,
+        { description = "Abre el portapapeles", group = "abrir" }),
+    awful.key({ modkey, "Shift" }, "v", function() awful.spawn("copyq show") end,
+        { description = "Abre el portapapeles en una ventana", group = "abrir" }),
+    awful.key({ alt, "Shift" }, "b", function() awful.spawn(browser) end,
+        { description = "Abre el navegador", group = "abrir" }),
+    awful.key({ alt, "Shift" }, "c", function() awful.spawn(calculadora) end,
+        { description = "Abre la calculadora", group = "abrir" }),
+    awful.key({ alt, "Shift" }, "o", function() awful.spawn("obsidian") end,
+        { description = "Abre obsidian", group = "abrir" }),
+
+    -- Screenshots
+    awful.key({}, "Print", function() awful.util.spawn_with_shell("maim | xclip -selection clipboard -t image/png") end,
+        { description = "Captura de pantalla", group = "media" }),
+    awful.key({ "Shift" }, "Print",
+        function() awful.util.spawn_with_shell("maim -s | xclip -selection clipboard -t image/png") end,
+        { description = "Recorte", group = "media" }),
+    awful.key({ modkey }, "Print",
+        function() awful.util.spawn_with_shell("maim /home/joaco/Media/Imagenes/Capturas/$(date +%s).jpg") end,
+        { description = "Guardar captura de pantalla", group = "media" }),
+    awful.key({ modkey, "Shift" }, "Print",
+        function() awful.util.spawn_with_shell("maim -s /home/joaco/Media/Imagenes/Capturas/$(date +%s).jpg") end,
+        { description = "Guardar recorte", group = "media" }),
+
+    -- Brillo
+    awful.key({}, "XF86MonBrightnessUp",
+        function() awful.util.spawn_with_shell("brillo -q -A 5") end,
+        { description = "Subir brillo", group = "media" }),
+    awful.key({}, "XF86MonBrightnessDown",
+        function() awful.util.spawn_with_shell("brillo -q -U 5") end,
+        { description = "Bajar brillo", group = "media" }),
+    awful.key({ "Shift" }, "F12",
+        function() awful.util.spawn_with_shell("brillo -q -A 5") end,
+        { description = "Subir brillo", group = "media" }),
+    awful.key({ "Shift" }, "F11",
+        function() awful.util.spawn_with_shell("brillo -q -U 5") end,
+        { description = "Bajar brillo", group = "media" }),
+
+    -- Media
+    awful.key({}, "XF86AudioPlay", function() awful.util.spawn_with_shell("playerctl play-pause") end,
+        { description = "Play-pause", group = "media" }),
+    awful.key({}, "XF86AudioNext", function() awful.util.spawn_with_shell("playerctl next") end,
+        { description = "Next", group = "media" }),
+    awful.key({}, "XF86AudioPrev", function() awful.util.spawn_with_shell("playerctl previous") end,
+        { description = "Previous", group = "media" }),
+    -- Audio
+    awful.key({}, "XF86AudioMute", function() awful.util.spawn_with_shell("amixer sset Master toggle") end,
+        { description = "Mute", group = "media" }),
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn_with_shell("amixer sset Master 1%+") end,
+        { description = "Subir volumen +1", group = "media" }),
+    awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn_with_shell("amixer sset Master 1%-") end,
+        { description = "Bajar el volumen -1", group = "media" }),
+    awful.key({ "Shift" }, "XF86AudioRaiseVolume", function() awful.util.spawn_with_shell("amixer sset Master 15%+") end,
+        { description = "Bajar el volumen 15", group = "media" }),
+    awful.key({ "Shift" }, "XF86AudioLowerVolume", function() awful.util.spawn_with_shell("amixer sset Master 15%-") end,
+        { description = "Bajar el volumen -15", group = "media" })
+
 )
 
 clientkeys = gears.table.join(
@@ -591,4 +650,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
