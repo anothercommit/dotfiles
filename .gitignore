@@ -4,9 +4,9 @@
 qtile/__pycache__/
 
 !sexo/
-sexo/
+sexo/*
 !sexo/lol
-sexo/lol
+sexo/lol/*
 !sexo/lol/anashe/
 
 !awesome/
