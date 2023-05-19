@@ -1,10 +1,13 @@
 /*
 
-# NvChad maldito
-!custom.copy/
-
 !qtile/
 qtile/__pycache__/
+
+!sexo/
+sexo/
+!sexo/lol
+sexo/lol
+!sexo/lol/anashe/
 
 !awesome/
 !alacritty/
