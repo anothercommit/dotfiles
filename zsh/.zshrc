@@ -1,4 +1,4 @@
-when
+# when
 figlet -c -t -f 3d "i use arch btw" | lolcat
 
 plugins=(git)
