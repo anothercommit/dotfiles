@@ -12,6 +12,11 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
+# Variables para la librería de CS50
+export CC="clang"
+export CFLAGS="-ferror-limit=1 -gdwarf-4 -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-gnu-folding-constant -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-but-set-variable -Wshadow"
+export LDLIBS="-lcrypt -lcs50 -lm"
+
 autoload -U compinit
 zstyle '*:completion*' menu select
 zmodload zsh/complist
@@ -94,6 +99,8 @@ alias gcall="git commit -a -m \"😎\""
 alias gcp="git commit -a -m \"😎\" && git push"
 
 alias b='bat'
+
+alias herramientas='bat /home/joaco/SecondBrain/1.\ Áreas\ 🛸/Informática/Herramientas\ linux.md'
 # }}}
 
 eval "$(starship init zsh)"
