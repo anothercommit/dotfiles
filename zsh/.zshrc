@@ -89,6 +89,7 @@ alias df='df -h'
 alias sudodu='sudo du -sh'
 alias sudodf='sudo df -h'
 alias keysoup="sudo systemctl restart keyd"
+alias b="bat -p"
 
 # Git aliases
 alias g='git'
@@ -98,10 +99,14 @@ alias gc='git commit'
 alias gcall="git commit -a -m \"😎\""
 alias gcp="git commit -a -m \"😎\" && git push"
 
-alias b='bat'
+alias b='bat -p'
 
 alias herramientas='bat /home/joaco/SecondBrain/1.\ Áreas\ 🛸/Informática/Herramientas\ linux.md'
+alias comandos='bat /home/joaco/SecondBrain/1.\ Áreas\ 🛸/Informática/Comandos\ recurrentes.md'
 # }}}
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/home/joaco/.bun/_bun" ] && source "/home/joaco/.bun/_bun"
