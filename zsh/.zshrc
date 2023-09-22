@@ -74,6 +74,7 @@ alias chromium="chromium --force-dark-mode --enable-features=WebUIDarkMode"
 
 # CLI aliases
 alias n='nvim'
+alias sn='sudo nvim'
 alias e='exa'
 alias ea='exa -a'
 alias el='exa -al'
