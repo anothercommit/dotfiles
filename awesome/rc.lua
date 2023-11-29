@@ -55,10 +55,11 @@ end
 beautiful.init("/home/joaco/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
-browser = "chromium --chromium --force-dark-mode --enable-features=WebUIDarkMode"
+-- browser = "chromium --chromium --force-dark-mode --enable-features=WebUIDarkMode"
+browser = "chromium"
 calculadora = "qalculate-gtk"
 
 modkey = "Mod4"

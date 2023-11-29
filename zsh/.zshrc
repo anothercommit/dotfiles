@@ -97,8 +97,8 @@ alias g='git'
 alias ga='git add'
 alias gall="git add --all"
 alias gc='git commit'
-alias gcall="git commit -a -m \"😎\""
-alias gcp="git commit -a -m \"😎\" && git push"
+alias gcall="git commit -a -m \"🦎\""
+alias gcp="git commit -a -m \"🦎\" && git push"
 
 alias b='bat -p'
 

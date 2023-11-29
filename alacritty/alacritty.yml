@@ -1,17 +1,11 @@
 window:
-  class:
-    instance: Alacritty
-    general: Alacritty
-  opacity: 1
-  padding:
-    x: 10
-    y: 10
-
-    dynamic_padding: false
-
-scrolling:
-  history: 10000
-  multiplier: 3
+  # class:
+  #   instance: Alacritty
+  #   general: Alacritty
+    opacity: 1
+  # padding:
+  #   x: 0
+  #   y: 0
 
 font:
   normal:
@@ -59,5 +53,3 @@ selection:
 
 shell:
   program: /usr/bin/zsh
-
-#key_bindings: anashe
