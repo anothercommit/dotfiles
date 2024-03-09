@@ -406,13 +406,13 @@ globalkeys = gears.table.join(
 		awful.util.spawn_with_shell("maim | xclip -selection clipboard -t image/png")
 	end, { description = "Captura de pantalla", group = "media" }),
 	awful.key({ "Shift" }, "Print", function()
-		awful.util.spawn_with_shell("maim -s | xclip -selection clipboard -t image/png")
+		awful.util.spawn_with_shell("maim -su | xclip -selection clipboard -t image/png")
 	end, { description = "Recorte", group = "media" }),
 	awful.key({ modkey }, "Print", function()
 		awful.util.spawn_with_shell("maim /home/joaco/Media/Imagenes/Capturas/$(date +%s).jpg")
 	end, { description = "Guardar captura de pantalla", group = "media" }),
 	awful.key({ modkey, "Shift" }, "Print", function()
-		awful.util.spawn_with_shell("maim -s /home/joaco/Media/Imagenes/Capturas/$(date +%s).jpg")
+		awful.util.spawn_with_shell("maim -su /home/joaco/Media/Imagenes/Capturas/$(date +%s).jpg")
 	end, { description = "Guardar recorte", group = "media" }),
 
 	-- Brillo
