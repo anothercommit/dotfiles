@@ -102,8 +102,8 @@ alias gcp="git commit -a -m \"🦎\" && git push"
 
 alias b='bat -p'
 
-alias herramientas='bat /home/joaco/SecondBrain/1.\ Áreas\ 🛸/Informática/Herramientas\ linux.md'
-alias comandos='bat /home/joaco/SecondBrain/1.\ Áreas\ 🛸/Informática/Comandos\ recurrentes.md'
+alias herramientas='bat "/home/joaco/SecondBrain/1. Áreas 🛸/PKM/Informática/Herramientas linux.md"'
+alias comandos='bat "/home/joaco/SecondBrain/1. Áreas 🛸/PKM/Informática/Comandos recurrentes.md"'
 # }}}
 
 eval "$(starship init zsh)"
