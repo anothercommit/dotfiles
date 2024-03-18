@@ -3,7 +3,7 @@
 !qtile/
 qtile/__pycache__/
 
-!ncspot/
+!lf/
 !awesome/
 !alacritty/
 !kitty/
