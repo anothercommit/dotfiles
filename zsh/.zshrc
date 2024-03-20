@@ -87,6 +87,7 @@ alias b="bat -p"
 
 # Git aliases
 alias g='git'
+alias gs='git status'
 alias ga='git add'
 alias gall="git add --all"
 alias gc='git commit'
